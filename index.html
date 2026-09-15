@@ -2,12 +2,13 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Mencegah zoom in/out di semua perangkat -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" type="image/webp" href="seena.webp">
     <title>Game Anaya Seena Safira</title>
     <style>
         /* --- TEMA UNGU ESTETIK --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Comic Sans MS', 'Quicksand', sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Comic Sans MS', 'Quicksand', sans-serif; touch-action: manipulation; }
         
         body {
             background: linear-gradient(135deg, #e0c3fc 0%, #cbb4d4 100%);
@@ -77,31 +78,23 @@
         .container {
             display: none; width: 100%; max-width: 1000px; margin: 0 auto;
             flex-direction: column; align-items: center;
-            padding: 90px 15px 40px 15px;
+            padding: 70px 15px 40px 15px;
             animation: fadeIn 0.4s ease-out;
         }
         .container.active { display: flex; }
         
-        #welcome { padding-top: 15vh; justify-content: flex-start; min-height: 100vh; }
+        #welcome { padding-top: 15vh; justify-content: flex-start; min-height: 100vh; padding-top: 70px; }
         #welcome h1 { font-size: 35px; padding: 10px 30px; border-radius: 50px; margin-bottom: 10px; }
         p.subtitle { font-size: 18px; color: #fff; margin-bottom: 25px; font-weight: bold; text-shadow: 1px 1px 2px rgba(93,59,118,0.3); text-align: center;}
 
-        h1 { 
-            font-size: 28px; color: #fff; text-shadow: 2px 2px 4px rgba(93,59,118,0.4); 
-            margin-bottom: 15px; text-align: center;
-            background: rgba(255,255,255,0.25); padding: 8px 25px; border-radius: 50px; backdrop-filter: blur(5px);
-            border: 2px solid rgba(255,255,255,0.5);
-            animation: floatSlow 3s ease-in-out infinite alternate;
-        }
-
-        /* --- DESAIN KARTU GELEMBUNG (UKURAN PAS & IDEAL) --- */
+        /* --- DESAIN KARTU GELEMBUNG --- */
         .grid-menu, .grid-item { display: grid; gap: 15px; width: 100%; }
-        .grid-menu { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); max-width: 750px; }
+        .grid-menu { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); max-width: 800px; }
         .grid-item { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
         
         .card {
             background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(10px);
-            border-radius: 30px; /* Ukuran gelembung pas */
+            border-radius: 30px;
             cursor: pointer;
             box-shadow: 0 8px 15px rgba(93, 59, 118, 0.15), inset 0 0 10px rgba(255,255,255,0.9);
             border: 3px solid rgba(255, 255, 255, 0.9); border-bottom: 6px solid #b185db;
@@ -165,86 +158,32 @@
     <!-- HALAMAN AWAL -->
     <div id="welcome" class="container active">
         <div style="font-size: 55px; animation: floatSlow 2s infinite alternate;">👑</div>
-        <h1>ANAYA SEENA SAFIRA</h1>
+        <h1 style="background: rgba(255,255,255,0.25); padding: 8px 25px; border-radius: 40px; font-size: 26px; color:#fff;">ANAYA SEENA SAFIRA</h1>
         <p class="subtitle">Bermain & Belajar Bersama</p>
         <button class="btn-start" onclick="mulaiGame()">Mulai Main 🎈</button>
     </div>
 
     <!-- MENU UTAMA -->
     <div id="home" class="container">
-        <h1>Pilih Permainan ✨</h1>
         <div class="grid-menu" id="menuGridContainer"></div>
     </div>
 
-    <!-- MENU 1: GERAKAN (32 Item) -->
-    <div id="gerakan" class="container">
-        <h1>Ayo Bergerak! 🏃‍♀️</h1>
-        <div class="grid-item" id="gridGerakan"></div>
-    </div>
+    <!-- SEMUA HALAMAN GAME -->
+    <div id="gerakan" class="container"><div class="grid-item" id="gridGerakan"></div></div>
+    <div id="hewan" class="container"><div class="grid-item" id="gridHewan"></div></div>
+    <div id="huruf-murni" class="container"><div class="grid-item" id="grid-abjad"></div></div>
+    <div id="huruf-benda" class="container"><div class="grid-item" id="grid-benda"></div></div>
+    <div id="angka" class="container"><div class="grid-item" id="gridAngka"></div></div>
+    <div id="hijaiyah" class="container"><div class="grid-item" id="gridHijaiyah"></div></div>
+    <div id="sholat" class="container"><div class="grid-item" id="gridSholat"></div></div>
+    <div id="doa" class="container"><div class="grid-item" id="gridDoa"></div></div>
+    <div id="bentuk" class="container"><div class="grid-item" id="gridBentuk"></div></div>
+    <div id="profesi" class="container"><div class="grid-item" id="gridProfesi"></div></div>
+    <div id="buah" class="container"><div class="grid-item" id="gridBuah"></div></div>
+    <div id="transportasi" class="container"><div class="grid-item" id="gridTransportasi"></div></div>
 
-    <!-- MENU 2: HEWAN (32 Item) -->
-    <div id="hewan" class="container">
-        <h1>Suara Hewan 🐾</h1>
-        <div class="grid-item" id="gridHewan"></div>
-    </div>
-
-    <!-- MENU 3: ABJAD A-Z -->
-    <div id="huruf-murni" class="container">
-        <h1>Abjad A - Z 🔤</h1>
-        <div class="grid-item" id="grid-abjad"></div>
-    </div>
-
-    <!-- MENU 4: HURUF & BENDA -->
-    <div id="huruf-benda" class="container">
-        <h1>Huruf & Benda 🍎</h1>
-        <div class="grid-item" id="grid-benda"></div>
-    </div>
-
-    <!-- MENU 5: ANGKA 1-25 -->
-    <div id="angka" class="container">
-        <h1>Angka 1 - 25 🔢</h1>
-        <div class="grid-item" id="gridAngka"></div>
-    </div>
-
-    <!-- MENU 6: HIJAIYAH -->
-    <div id="hijaiyah" class="container">
-        <h1>Huruf Hijaiyah ☪️</h1>
-        <div class="grid-item" id="gridHijaiyah"></div>
-    </div>
-
-    <!-- MENU 7: GERAKAN SHOLAT -->
-    <div id="sholat" class="container">
-        <h1>Gerakan Sholat & Ibadah 🕌</h1>
-        <div class="grid-item" id="gridSholat"></div>
-    </div>
-
-    <!-- MENU 8: DOA SEHARI-HARI -->
-    <div id="doa" class="container">
-        <h1>Doa Sehari-hari 🙏</h1>
-        <div class="grid-item" id="gridDoa"></div>
-    </div>
-
-    <!-- MENU 9: BENTUK & WARNA -->
-    <div id="bentuk" class="container">
-        <h1>Bentuk & Warna 🎨</h1>
-        <div class="grid-item" id="gridBentuk"></div>
-    </div>
-
-    <!-- MENU 10: PROFESI -->
-    <div id="profesi" class="container">
-        <h1>Profesi & Pekerjaan 👩‍⚕️</h1>
-        <div class="grid-item" id="gridProfesi"></div>
-    </div>
-
-    <!-- MENU 11: BUAH & SAYUR -->
-    <div id="buah" class="container">
-        <h1>Buah & Sayur Segar 🍓</h1>
-        <div class="grid-item" id="gridBuah"></div>
-    </div>
-
-    <!-- MENU 12: YOUTUBE -->
+    <!-- HALAMAN YOUTUBE -->
     <div id="video" class="container">
-        <h1>Nonton Video 📺</h1>
         <div class="video-wrapper">
             <iframe id="yt-player" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
@@ -261,11 +200,12 @@
             { id: 'huruf-benda', nama: 'Huruf & Benda', ikon: '🍎', suara: 'Huruf dan Benda' },
             { id: 'angka', nama: 'Angka 1-25', ikon: '🔢', suara: 'Belajar Angka' },
             { id: 'hijaiyah', nama: 'Hijaiyah', ikon: '☪️', suara: 'Huruf Hijaiyah' },
-            { id: 'sholat', nama: 'Gerakan Sholat', ikon: '🕌', suara: 'Gerakan Sholat' },
+            { id: 'sholat', nama: 'Sholat & Surat', ikon: '🕌', suara: 'Gerakan Sholat dan Surat Pendek' },
             { id: 'doa', nama: 'Doa Harian', ikon: '🤲', suara: 'Doa Sehari-hari' },
             { id: 'bentuk', nama: 'Bentuk & Warna', ikon: '🎨', suara: 'Bentuk dan Warna' },
             { id: 'profesi', nama: 'Profesi', ikon: '👩‍⚕️', suara: 'Mengenal Profesi' },
             { id: 'buah', nama: 'Buah & Sayur', ikon: '🍓', suara: 'Buah dan Sayur' },
+            { id: 'transportasi', nama: 'Transportasi', ikon: '🚗', suara: 'Alat Transportasi' },
             { id: 'video', nama: 'YouTube Anak', ikon: '📺', suara: 'Nonton Video' }
         ];
 
@@ -402,14 +342,18 @@
         const sholatData = [
             { t: 'Berdiri Tegak', i: '🧍‍♂️', s: 'Berdiri tegak menghadap kiblat.' },
             { t: 'Takbiratul Ihram', i: '🙌', s: 'Takbiratul ihram. Allahu Akbar!' },
-            { t: 'Sedekap', i: '🤲', s: 'Bersedekap membaca surat Al-Fatihah.' },
+            { t: 'Doa Iftitah', i: '🤲', s: 'Allah u akbar kabiro wal hamdu lillahi katsiro.' },
+            { t: 'Surat Al-Fatihah', i: '📖', s: 'Bismillahir rahmanir rahim. Alhamdulillahir robbil alamin.' },
+            { t: 'Surat Al-Ikhlas', i: '⭐', s: 'Qul huwallahu ahad. Allahus somad. Lam yalid walam yulad. Walam yakun lahu kufuwan ahad.' },
+            { t: 'Surat Al-Falaq', i: '🌙', s: 'Qul a’udzu birrobil falaq. Min syarri ma kholaq.' },
+            { t: 'Surat An-Nas', i: '☀️', s: 'Qul a’udzu bi rabbin nas. Malikin nas.' },
             { t: 'Ruku', i: '🙇‍♂️', s: 'Ruku. Subhana robbiyal adzimi wabihamdih.' },
             { t: 'Iktidal', i: '🙋‍♂️', s: 'Iktidal. Samiallahu liman hamidah.' },
             { t: 'Sujud', i: '🙇', s: 'Sujud. Subhana robbiyal alaa wabihamdih.' },
-            { t: 'Duduk di Antara Dua Sujud', i: '🧘‍♂️', s: 'Duduk di antara dua sujud. Robbighfirlii warhamnii.' },
-            { t: 'Tahiyyat Akhir', i: '🧎‍♂️', s: 'Tahiyyat akhir dan salam.' },
-            { t: 'Berdoa', i: '🤲', s: 'Berdoa kepada Allah SWT.' },
-            { t: 'Dzikir', i: '📿', s: 'Mendawamkan dzikir harian.' }
+            { t: 'Duduk Antara Dua Sujud', i: '🧘‍♂️', s: 'Robbighfirlii warhamnii wajburnii warfa’nii.' },
+            { t: 'Tahiyyat Awal', i: '🧎‍♂️', s: 'At-tahiyyatul mubarakatus shalawatuth thayyibatu lillah.' },
+            { t: 'Tahiyyat Akhir', i: '🤲', s: 'Assalamu alaika ayyuhan nabiyyu warahmatuullahi wabarakatuh.' },
+            { t: 'Salam', i: '👋', s: 'Assalamu alaikum warahmatullah.' }
         ];
         let shlHtml = '';
         sholatData.forEach((sh, idx) => {
@@ -421,13 +365,21 @@
 
         const doaData = [
             { t: 'Doa Makan', i: '🍽️', s: 'Doa sebelum makan. Allahumma barik lana fi ma razaqtna wa qina adzabannar.' },
+            { t: 'Doa Sesudah Makan', i: '🥛', s: 'Doa sesudah makan. Alhamdulillahilladzii ath’amanaa wasaqaanaa waja’alanaa minal muslimiin.' },
             { t: 'Doa Tidur', i: '🛌', s: 'Doa sebelum tidur. Bismika allahumma ahya wa bismika amuut.' },
             { t: 'Doa Bangun Tidur', i: '⏰', s: 'Doa bangun tidur. Alhamdulillahilladhi ahyana ba’da ma amatana wa ilaihin nusyur.' },
             { t: 'Doa Masuk Kamar Mandi', i: '🚪', s: 'Doa masuk kamar mandi. Allahumma inni a’udzubika minal khubutsi wal khabaits.' },
             { t: 'Doa Keluar Kamar Mandi', i: '🚿', s: 'Doa keluar kamar mandi. Ghufranaka.' },
             { t: 'Doa Kedua Orang Tua', i: '👨‍👩‍👦', s: 'Doa untuk orang tua. Robbighfirlii wa liwaalidayya warhamhuma kamaa rabbayaanii shagiiraa.' },
             { t: 'Doa Kebaikan Dunia Akhirat', i: '🌍', s: 'Doa kebaikan dunia akhirat. Robbana atina fid dunya hasanah wa fil akhirati hasanah wa qina adzabannar.' },
-            { t: 'Doa Masuk Rumah', i: '🏡', s: 'Doa masuk rumah dengan berkah.' }
+            { t: 'Doa Masuk Rumah', i: '🏡', s: 'Doa masuk rumah. Bismillahi walajna wa bismillahi kharajna.' },
+            { t: 'Doa Keluar Rumah', i: '🚶‍♀️', s: 'Doa keluar rumah. Bismillahi tawakkaltu ’alallah.' },
+            { t: 'Doa Naik Kendaraan', i: '🚗', s: 'Doa naik kendaraan. Subhanalladzii sakhkhara lanaa haadzaa wamaa kunnaa lahuu muqriniin.' },
+            { t: 'Doa Masuk Masjid', i: '🕌', s: 'Doa masuk masjid. Allahummaftah lii abwaaba rahmatika.' },
+            { t: 'Doa Keluar Masjid', i: '👟', s: 'Doa keluar masjid. Allahumma inni as-aluka min fadlik.' },
+            { t: 'Doa Belajar', i: '📚', s: 'Doa sebelum belajar. Ridhitu billahi robba, wabil islaami diina, wabi-muhammadin nabiyya wa rosula.' },
+            { t: 'Doa Cermin', i: '🪞', s: 'Doa berkaca. Alhamdulillahilladhi sawwa kholqi fa adlalah.' },
+            { t: 'Doa Bersin', i: '🤧', s: 'Doa ketika bersin. Alhamdulillah. Dan dijawab yarhamukallah.' }
         ];
         let doaHtml = '';
         doaData.forEach((d, idx) => {
@@ -446,7 +398,14 @@
             { t: 'Warna Jingga', i: '🟠', s: 'Warna Jingga' },
             { t: 'Warna Merah Muda', i: '🌸', s: 'Warna Merah Muda' },
             { t: 'Warna Putih', i: '⚪', s: 'Warna Putih' },
-            { t: 'Warna Hitam', i: '⚫', s: 'Warna Hitam' }
+            { t: 'Warna Hitam', i: '⚫', s: 'Warna Hitam' },
+            { t: 'Persegi Panjang', i: '🟫', s: 'Persegi Panjang Coklat' },
+            { t: 'Belah Ketupat', i: '🔶', s: 'Belah Ketupat Jingga' },
+            { t: 'Oval Biru Tua', i: '🔵', s: 'Oval Warna Biru Tua' },
+            { t: 'Warna Emas', i: '✨', s: 'Warna Emas Berkilau' },
+            { t: 'Warna Abu-abu', i: '🔘', s: 'Warna Abu-abu' },
+            { t: 'Warna Coklat', i: '🌰', s: 'Warna Coklat' },
+            { t: 'Bulan Sabit', i: '🌙', s: 'Bulan Sabit Malam' }
         ];
         let bntHtml = '';
         bentukData.forEach((bn, idx) => {
@@ -464,7 +423,31 @@
             { t: 'Pilot', i: '👨‍✈️', s: 'Pilot menerbangkan pesawat.' },
             { t: 'Astronot', i: '👨‍🚀', s: 'Astronot pergi ke luar angkasa.' },
             { t: 'Koki', i: '👨‍🍳', s: 'Koki memasak makanan enak.' },
-            { t: 'Petani', i: '👨‍🌾', s: 'Petani menanam padi.' }
+            { t: 'Petani', i: '👨‍🌾', s: 'Petani menanam padi.' },
+            { t: 'Tentara', i: '🪖', s: 'Tentara membela negara.' },
+            { t: 'Nelayan', i: '⛵', s: 'Nelayan menangkap ikan di laut.' },
+            { t: 'Arsitek', i: '📐', s: 'Arsitek merancang bangunan.' },
+            { t: 'Ilmuwan', i: '🔬', s: 'Ilmuwan melakukan penelitian.' },
+            { t: 'Penyanyi', i: '🎤', s: 'Penyanyi bersuara merdu.' },
+            { t: 'Pelukis', i: '🎨', s: 'Pelukis menggambar karya indah.' },
+            { t: 'Penari', i: '💃', s: 'Penari menari dengan gemulai.' },
+            { t: 'Astronot', i: '🚀', s: 'Menjelajah bintang-bintang.' },
+            { t: 'Masinis', i: '🚆', s: 'Masinis menjalankan kereta api.' },
+            { t: 'Nahkoda', i: '🚢', s: 'Nahkoda mengemudikan kapal.' },
+            { t: 'Sopir', i: '🚌', s: 'Sopir mengemudikan bus.' },
+            { t: 'Perawat', i: '👩‍⚕️', s: 'Perawat merawat pasien di rumah sakit.' },
+            { t: 'Apoteker', i: '💊', s: 'Apoteker menyiapkan obat.' },
+            { t: 'Hakim', i: '⚖️', s: 'Hakim memutus perkara adil.' },
+            { t: 'Jaksa', i: '📜', s: 'Jaksa penuntut umum.' },
+            { t: 'Wartawan', i: '📰', s: 'Wartawan mencari berita.' },
+            { t: 'Fotografer', i: '📸', s: 'Fotografer mengambil foto.' },
+            { t: 'Atlet', i: '🏅', s: 'Atlet berprestasi di bidang olahraga.' },
+            { t: 'Penulis', i: '✍️', s: 'Penulis menulis buku cerita.' },
+            { t: 'Montir', i: '🔧', s: 'Montir memperbaiki kendaraan.' },
+            { t: 'Tukang Kayu', i: '🪚', s: 'Tukang kayu membuat perabot.' },
+            { t: 'Penjahit', i: '🧵', s: 'Penjahit membuat pakaian.' },
+            { t: 'Pemain Bola', i: '⚽', s: 'Pemain sepak bola profesional.' },
+            { t: 'Pustakawan', i: '📚', s: 'Pustakawan menjaga perpustakaan.' }
         ];
         let prfHtml = '';
         profesiData.forEach((pr, idx) => {
@@ -482,7 +465,31 @@
             { t: 'Wortel', i: '🥕', s: 'Sayur Wortel sehat untuk mata.' },
             { t: 'Brokoli', i: '🥦', s: 'Sayur Brokoli hijau sehat.' },
             { t: 'Tomat', i: '🍅', s: 'Tomat merah segar.' },
-            { t: 'Jagung', i: '🌽', s: 'Jagung manis lezat.' }
+            { t: 'Jagung', i: '🌽', s: 'Jagung manis lezat.' },
+            { t: 'Apel Merah', i: '🍎', s: 'Buah apel merah ranum.' },
+            { t: 'Jeruk Manis', i: '🍊', s: 'Buah jeruk kaya vitamin c.' },
+            { t: 'Mangga', i: '🥭', s: 'Buah mangga manis legit.' },
+            { t: 'Nanas', i: '🍍', s: 'Buah nanas segar.' },
+            { t: 'Melon', i: '🍈', s: 'Buah melon hijau manis.' },
+            { t: 'Pepaya', i: '🍈', s: 'Buah pepaya baik untuk pencernaan.' },
+            { t: 'Alpukat', i: '🥑', s: 'Buah alpukat lembut bergizi.' },
+            { t: 'Kelapa', i: '🥥', s: 'Buah kelapa airnya menyegarkan.' },
+            { t: 'Ceri', i: '🍒', s: 'Buah ceri merah kecil.' },
+            { t: 'Pir', i: '🍐', s: 'Buah pir manis berair.' },
+            { t: 'Kiwi', i: '🥝', s: 'Buah kiwi kaya serat.' },
+            { t: 'Delima', i: '🍎', s: 'Buah delima merah.' },
+            { t: 'Bayam', i: '🥬', s: 'Sayur bayam hijau kuat.' },
+            { t: 'Kangkung', i: '🥗', s: 'Sayur kangkung lezat ditumis.' },
+            { t: 'Kentang', i: '🥔', s: 'Kentang sumber karbohidrat.' },
+            { t: 'Ubi', i: '🍠', s: 'Ubi manis mengeyangkan.' },
+            { t: 'Bawang Merah', i: '🧅', s: 'Bawang merah bumbu dapur.' },
+            { t: 'Bawang Putih', i: '🧄', s: 'Bawang putih sehat.' },
+            { t: 'Timun', i: '🥒', s: 'Timun segar lalapan.' },
+            { t: 'Terong', i: '🍆', s: 'Terong ungu.' },
+            { t: 'Jamur', i: '🍄', s: 'Jamur lezat dimasak.' },
+            { t: 'Kacang', i: '🥜', s: 'Kacang gurih.' },
+            { t: 'Lobak', i: '🥕', s: 'Lobak putih sehat.' },
+            { t: 'Sawi', i: '🥬', s: 'Sayur sawi hijau.' }
         ];
         let buhHtml = '';
         buahData.forEach((bh, idx) => {
@@ -491,6 +498,32 @@
                         </div>`;
         });
         document.getElementById('gridBuah').innerHTML = buhHtml;
+
+        const transData = [
+            { t: 'Mobil', i: '🚗', s: 'Mobil berjalan di jalan raya.' },
+            { t: 'Motor', i: '🏍️', s: 'Sepeda motor beroda dua.' },
+            { t: 'Sepeda', i: '🚲', s: 'Sepeda dikayuh dengan kaki.' },
+            { t: 'Bus', i: '🚌', s: 'Bus mengangkut banyak penumpang.' },
+            { t: 'Truk', i: '🚚', s: 'Truk mengangkut barang besar.' },
+            { t: 'Kereta Api', i: '🚆', s: 'Kereta api berjalan di atas rel. Tut tut tut!' },
+            { t: 'Pesawat', i: '✈️', s: 'Pesawat terbang tinggi di langit awan.' },
+            { t: 'Helikopter', i: '🚁', s: 'Helikopter berbaling-baling.' },
+            { t: 'Kapal Laut', i: '🚢', s: 'Kapal berlayar di tengah laut.' },
+            { t: 'Perahu', i: '⛵', s: 'Perahu nelayan berlayar.' },
+            { t: 'Ambulans', i: '🚑', s: 'Mobil ambulans membawa orang sakit.' },
+            { t: 'Mobil Polisi', i: '🚓', s: 'Mobil polisi berpatroli.' },
+            { t: 'Pemadam Kebakaran', i: '🚒', s: 'Mobil pemadam membawa air.' },
+            { t: 'Roket', i: '🚀', s: 'Roket meluncur ke luar angkasa!' },
+            { t: 'Becak', i: '🛺', s: 'Becak kendaraan tradisional beroda tiga.' },
+            { t: 'Balon Udara', i: '🎈', s: 'Balon udara terbang di udara.' }
+        ];
+        let trsHtml = '';
+        transData.forEach((tr, idx) => {
+            trsHtml += `<div class="card" onclick="aksi('${tr.s}', 'trs${idx}', 'anim-lompat')">
+                            <div class="icon" id="trs${idx}">${tr.i}</div><div class="title">${tr.t}</div>
+                        </div>`;
+        });
+        document.getElementById('gridTransportasi').innerHTML = trsHtml;
 
         let suaraPilihan = null;
         function siapkanSuara() {

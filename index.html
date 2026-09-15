@@ -6,115 +6,143 @@
     <link rel="icon" type="image/webp" href="seena.webp">
     <title>Game Anaya Seena Safira</title>
     <style>
-        /* TEMA UNGU ESTETIK & GELEMBUNG */
+        /* --- TEMA UNGU ESTETIK --- */
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Comic Sans MS', 'Quicksand', sans-serif; }
         
         body {
-            /* Latar belakang ungu pastel yang sangat lembut */
             background: linear-gradient(135deg, #e0c3fc 0%, #cbb4d4 100%);
             background-attachment: fixed;
             min-height: 100vh;
             color: #5d3b76;
             overflow-x: hidden; 
-            overflow-y: auto; /* Memungkinkan scroll vertikal */
+            overflow-y: auto; 
             position: relative;
         }
 
-        /* --- EFEK GELEMBUNG BACKGROUND --- */
-        .bg-bubbles {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;
-        }
-        .bubble {
-            position: absolute; bottom: -20px; background: rgba(255,255,255,0.3); border-radius: 50%;
-            animation: terbang 10s infinite ease-in;
-        }
-        .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 8s; }
-        .bubble:nth-child(2) { width: 60px; height: 60px; left: 30%; animation-duration: 12s; animation-delay: 2s; }
-        .bubble:nth-child(3) { width: 30px; height: 30px; left: 70%; animation-duration: 7s; animation-delay: 4s; }
-        .bubble:nth-child(4) { width: 80px; height: 80px; left: 50%; animation-duration: 15s; animation-delay: 0s; }
-        .bubble:nth-child(5) { width: 50px; height: 50px; left: 90%; animation-duration: 9s; animation-delay: 3s; }
-        
-        @keyframes terbang {
-            0% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
-        }
+        /* --- ANIMASI GELEMBUNG BACKGROUND --- */
+        .bg-bubbles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .bubble { position: absolute; bottom: -20px; background: rgba(255,255,255,0.3); border-radius: 50%; animation: terbang 10s infinite ease-in; }
+        .bubble:nth-child(1) { width: 35px; height: 35px; left: 15%; animation-duration: 8s; }
+        .bubble:nth-child(2) { width: 50px; height: 50px; left: 35%; animation-duration: 12s; animation-delay: 2s; }
+        .bubble:nth-child(3) { width: 25px; height: 25px; left: 70%; animation-duration: 7s; animation-delay: 4s; }
+        .bubble:nth-child(4) { width: 70px; height: 70px; left: 55%; animation-duration: 15s; animation-delay: 0s; }
+        .bubble:nth-child(5) { width: 40px; height: 40px; left: 85%; animation-duration: 9s; animation-delay: 3s; }
+        @keyframes terbang { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
 
-        /* Container Utama */
-        .container {
-            display: none;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            flex-direction: column;
+        /* --- NAVBAR MELAYANG DI ATAS (STICKY TOP) --- */
+        .top-navbar {
+            display: none; 
+            position: fixed;
+            top: 12px; left: 50%;
+            transform: translateX(-50%);
+            width: 95%; max-width: 900px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 8px 12px;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(93, 59, 118, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.9);
             align-items: center;
-            padding: 30px 15px 80px 15px; /* Padding bawah besar agar tombol kembali terlihat */
-            animation: fadeIn 0.6s ease-out;
+            gap: 10px; /* Jarak antara tombol kembali & menu lain */
+        }
+        .top-navbar.active { display: flex; }
+
+        /* Tombol Kembali di Pojok Kiri Navbar */
+        .btn-kembali {
+            background: #ff7eb3; color: white;
+            border: none; border-radius: 25px;
+            padding: 8px 16px; font-size: 15px; font-weight: bold;
+            cursor: pointer; box-shadow: 0 4px 0 #ff4757; transition: 0.2s;
+            display: flex; align-items: center; gap: 5px;
+            flex-shrink: 0;
+        }
+        .btn-kembali:active { transform: translateY(3px); box-shadow: 0 1px 0 #ff4757; }
+
+        /* Kumpulan Ikon Pintasan di Kanan Navbar */
+        .nav-icons { 
+            display: flex; gap: 8px; overflow-x: auto; 
+            padding: 4px 0; scrollbar-width: none; flex-grow: 1; justify-content: flex-end;
+        }
+        .nav-icons::-webkit-scrollbar { display: none; }
+        
+        .nav-ikon-btn {
+            background: rgba(255, 255, 255, 0.9); border: 2px solid #b185db;
+            border-radius: 50%; width: 38px; height: 38px;
+            display: flex; justify-content: center; align-items: center;
+            font-size: 18px; cursor: pointer; transition: 0.2s;
+            box-shadow: 0 3px 0 #b185db; flex-shrink: 0;
+        }
+        .nav-ikon-btn:active { transform: translateY(3px); box-shadow: 0 0px 0 #b185db; }
+
+        /* --- CONTAINER KONTEN (Disesuaikan agar tidak tertutup Navbar) --- */
+        .container {
+            display: none; width: 100%; max-width: 900px; margin: 0 auto;
+            flex-direction: column; align-items: center;
+            padding: 85px 15px 40px 15px; /* Jarak atas besar khusus tempat Navbar */
+            animation: fadeIn 0.5s ease-out;
         }
         .container.active { display: flex; }
+        
+        /* Halaman Awal (Gelembung Dikecilkan) */
+        #welcome { padding-top: 15vh; justify-content: flex-start; min-height: 100vh; }
+        #welcome h1 { font-size: 24px; padding: 12px 30px; border-radius: 40px; margin-bottom: 5px; }
+        p.subtitle { font-size: 15px; color: #fff; margin-bottom: 25px; font-weight: bold; text-shadow: 1px 1px 2px rgba(93,59,118,0.3); text-align: center;}
 
-        /* Judul Melayang */
+        /* Judul Menu Halaman */
         h1 { 
-            font-size: 35px; color: #fff; text-shadow: 2px 2px 5px rgba(93,59,118,0.4); 
-            margin-bottom: 10px; text-align: center;
-            background: rgba(255,255,255,0.2); padding: 10px 30px; border-radius: 50px; backdrop-filter: blur(5px);
+            font-size: 24px; color: #fff; text-shadow: 2px 2px 4px rgba(93,59,118,0.4); 
+            margin-bottom: 15px; text-align: center;
+            background: rgba(255,255,255,0.25); padding: 8px 25px; border-radius: 40px; backdrop-filter: blur(5px);
             border: 2px solid rgba(255,255,255,0.5);
             animation: floatSlow 3s ease-in-out infinite alternate;
         }
-        p.subtitle { font-size: 18px; color: #fff; margin-bottom: 25px; font-weight: bold; text-shadow: 1px 1px 2px rgba(93,59,118,0.3); text-align: center;}
 
-        /* --- DESAIN KARTU GELEMBUNG (BUBBLE CARDS) --- */
-        .grid-menu, .grid-item {
-            display: grid; gap: 15px; width: 100%;
-        }
-        .grid-menu { grid-template-columns: repeat(2, 1fr); max-width: 600px; }
+        /* --- DESAIN KARTU GELEMBUNG (DIPERKECIL) --- */
+        .grid-menu, .grid-item { display: grid; gap: 12px; width: 100%; }
+        .grid-menu { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); max-width: 500px; }
         .grid-item { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
         
-        /* Kartu Menu Video Memanjang */
-        .grid-menu .card-video { grid-column: span 2; }
-
         .card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border-radius: 40px; /* Bentuk gelembung/kapsul bulat */
+            background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(10px);
+            border-radius: 25px; /* Gelembung mungil */
             cursor: pointer;
-            box-shadow: 0 8px 15px rgba(93, 59, 118, 0.15), inset 0 0 10px rgba(255,255,255,0.8);
-            border: 3px solid rgba(255, 255, 255, 0.9);
-            border-bottom: 6px solid #b185db;
-            transition: all 0.2s;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 20px 10px; text-align: center;
-            /* Efek melayang individual */
+            box-shadow: 0 6px 12px rgba(93, 59, 118, 0.1), inset 0 0 10px rgba(255,255,255,0.9);
+            border: 2px solid rgba(255, 255, 255, 0.9); border-bottom: 4px solid #b185db;
+            transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 12px 8px; text-align: center;
             animation: floatCard 3s ease-in-out infinite alternate;
         }
-        /* Membuat efek melayangnya tidak serempak */
+        /* Variasi Warna Card */
         .card:nth-child(even) { animation-delay: 0.5s; border-bottom-color: #f7a8b8; }
         .card:nth-child(3n) { animation-delay: 1s; border-bottom-color: #8ec5fc; }
         .card:nth-child(5n) { animation-delay: 1.5s; border-bottom-color: #fce38a; }
-        
         .card:active { transform: scale(0.9) !important; box-shadow: 0 2px 5px rgba(93, 59, 118, 0.2); animation: none; }
 
-        .icon { font-size: 45px; margin-bottom: 5px; display: inline-block; filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2)); }
-        .title { font-size: 16px; font-weight: bold; color: #5d3b76; }
-        .huruf-teks { font-size: 50px !important; font-weight: 900; color: #9c27b0; text-shadow: 2px 2px 0 #fff; margin:0;}
+        .icon { font-size: 36px; margin-bottom: 5px; display: inline-block; filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2)); }
+        .title { font-size: 13px; font-weight: bold; color: #5d3b76; line-height: 1.2; }
+        .huruf-teks { font-size: 42px !important; font-weight: 900; color: #9c27b0; text-shadow: 2px 2px 0 #fff; margin:0;}
 
-        /* Tombol Kembali (Sticky di bawah jika diperlukan, tapi ini mengikuti scroll) */
-        .btn-wrapper { width: 100%; display: flex; justify-content: center; margin-top: 30px; }
-        .btn {
-            padding: 12px 30px; font-size: 20px; font-weight: bold; background: #fff; color: #7b2cbf;
-            border: 4px solid #7b2cbf; border-radius: 40px; cursor: pointer; transition: all 0.2s;
-            box-shadow: 0 6px 0 #7b2cbf, 0 10px 10px rgba(0,0,0,0.1);
+        .btn-start { 
+            background: linear-gradient(to right, #9d4edd, #c77dff); color: white; 
+            padding: 12px 35px; font-size: 20px; font-weight: bold;
+            border: 3px solid white; border-radius: 40px; cursor: pointer;
+            box-shadow: 0 5px 0 #7b2cbf; animation: pulse 1.5s infinite; transition: 0.2s;
         }
-        .btn:active { transform: translateY(4px); box-shadow: 0 2px 0 #7b2cbf; }
-        .btn-start { background: linear-gradient(to right, #9d4edd, #c77dff); color: white; padding: 15px 50px; font-size: 26px; border-color: white; animation: pulse 1.5s infinite; }
+        .btn-start:active { transform: translateY(4px); box-shadow: 0 2px 0 #7b2cbf; }
 
-        /* Video Container */
-        .video-wrapper { width: 100%; max-width: 700px; aspect-ratio: 16/9; border-radius: 25px; overflow: hidden; border: 6px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.3); background: black; position: relative;}
+        /* Video Container (Responsif) */
+        .video-wrapper { 
+            width: 100%; max-width: 750px; aspect-ratio: 16/9; 
+            border-radius: 20px; overflow: hidden; border: 5px solid white; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); background: black; position: relative; margin-bottom: 15px;
+        }
         .video-wrapper iframe { width: 100%; height: 100%; border: none; position: absolute; top:0; left:0;}
 
         /* --- KUMPULAN ANIMASI --- */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes floatSlow { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
-        @keyframes floatCard { 0% { transform: translateY(0px); } 100% { transform: translateY(-8px); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes floatSlow { 0% { transform: translateY(0); } 100% { transform: translateY(-8px); } }
+        @keyframes floatCard { 0% { transform: translateY(0px); } 100% { transform: translateY(-5px); } }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         
         /* Animasi Gerakan Anak */
@@ -122,25 +150,37 @@
         .anim-pundak { animation: naikturun 1s; } @keyframes naikturun { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
         .anim-lutut { animation: tekuk 1s; } @keyframes tekuk { 0%,100%{transform:scale(1,1);} 50%{transform:scale(1.1, 0.7) translateY(10px);} }
         .anim-kaki { animation: tendang 1s; } @keyframes tendang { 0%,100%{transform:rotate(0);} 50%{transform:rotate(30deg) translateX(15px);} }
-        .anim-lompat { animation: lompat 0.8s; } @keyframes lompat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-25px) scale(1.2);} }
+        .anim-lompat { animation: lompat 0.8s; } @keyframes lompat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-20px) scale(1.2);} }
         .anim-goyang { animation: goyang 1s; } @keyframes goyang { 0%,100%{transform:rotate(0);} 25%{transform:rotate(-15deg);} 75%{transform:rotate(15deg);} }
-        .anim-besar { animation: besar 1s; } @keyframes besar { 0%,100%{transform:scale(1);} 50%{transform:scale(1.3);} }
+        .anim-besar { animation: besar 1s; } @keyframes besar { 0%,100%{transform:scale(1);} 50%{transform:scale(1.2);} }
     </style>
 </head>
 <body>
 
-    <!-- Gelembung Latar Belakang -->
     <div class="bg-bubbles">
         <div class="bubble"></div><div class="bubble"></div><div class="bubble"></div>
         <div class="bubble"></div><div class="bubble"></div>
     </div>
 
-    <!-- HALAMAN AWAL -->
-    <div id="welcome" class="container active" style="justify-content: center; min-height: 100vh; padding-bottom: 0;">
-        <div style="font-size: 70px; animation: floatSlow 2s infinite alternate;">👑</div>
-        <h1 style="font-size: 40px;">ANAYA SEENA SAFIRA</h1>
+    <!-- NAVBAR ATAS (Pojok Kiri: Kembali | Kanan: Menu Pintasan) -->
+    <nav class="top-navbar" id="topNav">
+        <button class="btn-kembali" onclick="bukaHalaman('home')">⬅️<span style="display:none;" id="teksKembali">Home</span></button>
+        <div class="nav-icons">
+            <div class="nav-ikon-btn" onclick="bukaHalaman('gerakan', 'Bermain Gerakan')" title="Gerakan">🤸</div>
+            <div class="nav-ikon-btn" onclick="bukaHalaman('hewan', 'Suara Hewan')" title="Hewan">🐶</div>
+            <div class="nav-ikon-btn" onclick="bukaHalaman('huruf-murni', 'Abjad')" title="Abjad">🔤</div>
+            <div class="nav-ikon-btn" onclick="bukaHalaman('huruf-benda', 'Benda')" title="Benda">🍎</div>
+            <div class="nav-ikon-btn" onclick="bukaHalaman('angka', 'Angka')" title="Angka">🔢</div>
+            <div class="nav-ikon-btn" onclick="bukaHalaman('video', 'Nonton Video')" title="Video">📺</div>
+        </div>
+    </nav>
+
+    <!-- HALAMAN AWAL (Welcome) -->
+    <div id="welcome" class="container active">
+        <div style="font-size: 45px; animation: floatSlow 2s infinite alternate;">👑</div>
+        <h1>ANAYA SEENA SAFIRA</h1>
         <p class="subtitle">Bermain & Belajar Bersama</p>
-        <button class="btn btn-start" onclick="mulaiGame()">Mulai Main 🎈</button>
+        <button class="btn-start" onclick="mulaiGame()">Mulai Main 🎈</button>
     </div>
 
     <!-- MENU UTAMA -->
@@ -168,7 +208,7 @@
         </div>
     </div>
 
-    <!-- MENU 1: GERAKAN -->
+    <!-- MENU 1: GERAKAN (14 Item) -->
     <div id="gerakan" class="container">
         <h1>Ayo Bergerak! 🏃‍♀️</h1>
         <div class="grid-item">
@@ -182,11 +222,14 @@
             <div class="card" onclick="aksi('Mulut', 'g8', 'anim-besar')"><div class="icon" id="g8">👄</div><div class="title">Mulut</div></div>
             <div class="card" onclick="aksi('Tangan', 'g9', 'anim-goyang')"><div class="icon" id="g9">🖐️</div><div class="title">Tangan</div></div>
             <div class="card" onclick="aksi('Perut', 'g10', 'anim-besar')"><div class="icon" id="g10">🤰</div><div class="title">Perut</div></div>
+            <div class="card" onclick="aksi('Rambut', 'g11', 'anim-goyang')"><div class="icon" id="g11">💇‍♀️</div><div class="title">Rambut</div></div>
+            <div class="card" onclick="aksi('Pipi', 'g12', 'anim-besar')"><div class="icon" id="g12">😊</div><div class="title">Pipi</div></div>
+            <div class="card" onclick="aksi('Gigi', 'g13', 'anim-lompat')"><div class="icon" id="g13">😁</div><div class="title">Gigi</div></div>
+            <div class="card" onclick="aksi('Dagu', 'g14', 'anim-pundak')"><div class="icon" id="g14">🧔</div><div class="title">Dagu</div></div>
         </div>
-        <div class="btn-wrapper"><button class="btn" onclick="bukaHalaman('home')">⬅️ Kembali</button></div>
     </div>
 
-    <!-- MENU 2: HEWAN (GAME BARU) -->
+    <!-- MENU 2: HEWAN (14 Item) -->
     <div id="hewan" class="container">
         <h1>Suara Hewan 🐾</h1>
         <div class="grid-item">
@@ -200,22 +243,23 @@
             <div class="card" onclick="aksi('Gajah. Tooooet!', 'hw8', 'anim-besar')"><div class="icon" id="hw8">🐘</div><div class="title">Gajah</div></div>
             <div class="card" onclick="aksi('Singa. Haaauuum!', 'hw9', 'anim-besar')"><div class="icon" id="hw9">🦁</div><div class="title">Singa</div></div>
             <div class="card" onclick="aksi('Monyet. U u a a!', 'hw10', 'anim-goyang')"><div class="icon" id="hw10">🐒</div><div class="title">Monyet</div></div>
+            <div class="card" onclick="aksi('Kuda. Hiii Haaa!', 'hw11', 'anim-lompat')"><div class="icon" id="hw11">🐴</div><div class="title">Kuda</div></div>
+            <div class="card" onclick="aksi('Harimau. Rrrrrroooaaar!', 'hw12', 'anim-besar')"><div class="icon" id="hw12">🐯</div><div class="title">Harimau</div></div>
+            <div class="card" onclick="aksi('Katak. Teot teblung!', 'hw13', 'anim-goyang')"><div class="icon" id="hw13">🐸</div><div class="title">Katak</div></div>
+            <div class="card" onclick="aksi('Tikus. Cit cit cit!', 'hw14', 'anim-lompat')"><div class="icon" id="hw14">🐭</div><div class="title">Tikus</div></div>
         </div>
-        <div class="btn-wrapper"><button class="btn" onclick="bukaHalaman('home')">⬅️ Kembali</button></div>
     </div>
 
     <!-- MENU 3: HURUF MURNI (A-Z) -->
     <div id="huruf-murni" class="container">
         <h1>Abjad A - Z 🔤</h1>
         <div class="grid-item" id="grid-abjad"></div>
-        <div class="btn-wrapper"><button class="btn" onclick="bukaHalaman('home')">⬅️ Kembali</button></div>
     </div>
 
     <!-- MENU 4: HURUF & BENDA -->
     <div id="huruf-benda" class="container">
         <h1>Huruf & Benda 🍎</h1>
         <div class="grid-item" id="grid-benda"></div>
-        <div class="btn-wrapper"><button class="btn" onclick="bukaHalaman('home')">⬅️ Kembali</button></div>
     </div>
 
     <!-- MENU 5: ANGKA 1-10 -->
@@ -233,22 +277,22 @@
             <div class="card" onclick="aksi('Sembilan', 'a9', 'anim-lompat')"><div class="icon" id="a9">9️⃣</div><div class="title">Sembilan</div></div>
             <div class="card" onclick="aksi('Sepuluh', 'a10', 'anim-lompat')"><div class="icon" id="a10">🔟</div><div class="title">Sepuluh</div></div>
         </div>
-        <div class="btn-wrapper"><button class="btn" onclick="bukaHalaman('home')">⬅️ Kembali</button></div>
     </div>
 
     <!-- MENU 6: YOUTUBE -->
     <div id="video" class="container">
         <h1>Nonton Video 📺</h1>
         <div class="video-wrapper">
+            <!-- Parameter controls=1 ditambahkan agar tombol play di youtube berfungsi optimal -->
             <iframe id="yt-player" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
-        <div class="btn-wrapper" style="gap: 15px;">
-            <button class="btn" onclick="tutupVideo()">⬅️ Kembali</button>
-            <button class="btn" style="background:#ff9a9e; color:white; border-color:#ff9a9e;" onclick="gantiVideo()">Ganti Video 🔄</button>
-        </div>
+        <button class="btn-start" style="font-size:16px; padding:10px 25px; margin-top:5px; background:#ff9a9e; border-color:#ff9a9e;" onclick="gantiVideo()">Acak Video Lainnya 🔄</button>
     </div>
 
     <script>
+        // Memunculkan teks "Home" di tombol kembali khusus untuk tablet/laptop layar lebar
+        if(window.innerWidth > 600) { document.getElementById('teksKembali').style.display = 'inline'; }
+
         // Data Huruf & Benda
         const hurufData = [
             { h: 'A', b: 'Apel', e: '🍎' }, { h: 'B', b: 'Bola', e: '⚽' }, { h: 'C', b: 'Cicak', e: '🦎' },
@@ -258,11 +302,10 @@
             { h: 'M', b: 'Mobil', e: '🚗' }, { h: 'N', b: 'Nanas', e: '🍍' }, { h: 'O', b: 'Obat', e: '💊' },
             { h: 'P', b: 'Pisang', e: '🍌' }, { h: 'Q', b: 'Quran', e: '📖' }, { h: 'R', b: 'Roti', e: '🍞' },
             { h: 'S', b: 'Sapi', e: '🐄' }, { h: 'T', b: 'Topi', e: '🎩' }, { h: 'U', b: 'Ular', e: '🐍' },
-            { h: 'V', b: 'Vas', e: '🏺' }, { h: 'W', b: 'Wortel', e: '🥕' }, { h: 'X', b: 'Xilofon', e: '🎹' },
+            { h: 'V', b: 'Vas', e: '🏺' }, { h: 'W', b: 'Warna', e: '🎨' }, { h: 'X', b: 'Xilofon', e: '🎹' },
             { h: 'Y', b: 'Yoyo', e: '🪀' }, { h: 'Z', b: 'Zebra', e: '🦓' }
         ];
 
-        // Generate Kotak Huruf
         let abjadHtml = ''; let bendaHtml = '';
         hurufData.forEach((item, index) => {
             abjadHtml += `<div class="card" onclick="aksi('${item.h}', 'hm${index}', 'anim-lompat')">
@@ -275,29 +318,26 @@
         document.getElementById('grid-abjad').innerHTML = abjadHtml;
         document.getElementById('grid-benda').innerHTML = bendaHtml;
 
-        // PENGATURAN SUARA (Mencari suara perempuan/lembut Indonesia)
+        // PENGATURAN SUARA INDONESIA (Diperlembut)
         let suaraPilihan = null;
         function siapkanSuara() {
             let voices = window.speechSynthesis.getVoices();
-            // Coba cari suara Google Indonesia (biasanya lebih jernih dan lembut)
-            suaraPilihan = voices.find(v => v.lang === 'id-ID' && v.name.includes('Google')) 
-                        || voices.find(v => v.lang === 'id-ID')
-                        || voices.find(v => v.lang.includes('id'));
+            suaraPilihan = voices.find(v => v.lang === 'id-ID' && v.name.includes('Google')) || voices.find(v => v.lang === 'id-ID');
         }
-        window.speechSynthesis.onvoiceschanged = siapkanSuara; // Panggil saat daftar suara di HP siap
+        window.speechSynthesis.onvoiceschanged = siapkanSuara;
 
         function ucapkan(text) {
             window.speechSynthesis.cancel(); 
             let speech = new SpeechSynthesisUtterance(text);
             if(suaraPilihan) speech.voice = suaraPilihan;
             speech.lang = 'id-ID'; 
-            speech.rate = 0.85;  // Diperlambat sedikit agar jelas
-            speech.pitch = 1.1;  // Dibuat sedikit rendah agar lebih halus dan tidak melengking
+            speech.rate = 0.85;  
+            speech.pitch = 1.15;  
             speech.volume = 1;
             window.speechSynthesis.speak(speech);
         }
 
-        // LOGIKA NAVIGASI
+        // LOGIKA NAVIGASI (Sticky Top & Pindah Halaman)
         function mulaiGame() {
             let unlock = new SpeechSynthesisUtterance('');
             window.speechSynthesis.speak(unlock);
@@ -306,37 +346,52 @@
 
         function bukaHalaman(pageId, suaraTeks) {
             if(suaraTeks) ucapkan(suaraTeks);
-            if(pageId === 'video' && document.getElementById('yt-player').src === '') gantiVideo();
 
+            // Memunculkan Navbar Jika Bukan di Halaman Welcome
+            if (pageId === 'welcome') {
+                document.getElementById('topNav').classList.remove('active');
+            } else {
+                document.getElementById('topNav').classList.add('active');
+            }
+            
+            // Otomatis Mematikan / Menghidupkan Video YouTube
+            if (document.getElementById('video').classList.contains('active') && pageId !== 'video') {
+                document.getElementById('yt-player').src = ''; // Matikan video agar suaranya hilang saat pindah menu
+            }
+            if (pageId === 'video' && document.getElementById('yt-player').src === '') gantiVideo();
+
+            // Pindah Kontainer
             document.querySelectorAll('.container').forEach(el => el.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0); // Reset scroll ke atas tiap ganti halaman
+            window.scrollTo(0, 0);
         }
 
-        // LOGIKA ANIMASI
         function aksi(teks, elemenId, kelasAnimasi) {
             ucapkan(teks);
             const ikon = document.getElementById(elemenId);
             ikon.classList.remove(kelasAnimasi);
-            void ikon.offsetWidth; // Refresh animasi
+            void ikon.offsetWidth; 
             ikon.classList.add(kelasAnimasi);
             setTimeout(() => { ikon.classList.remove(kelasAnimasi); }, 1000);
         }
 
-        // LOGIKA VIDEO ANAK
+        // KOLEKSI 30+ VIDEO YOUTUBE ANAK (Dipilih khusus yang bisa diputar)
         const playlist = [
-            'M97Lq6lYngc', 'cM4m7DqD87c', 'yWirdnSDsV4', 'e_04ZrNroTo', 'XqZsoesa55w', 
-            '9O0l0mPzL8Y', '7_8yv5R2-eI', 'jLh_s7Qv_tE', 'hYn9o8T7Z8g', 'zO8M-4K20Uo', 
-            '2qJ3r8g5zCg', 'F4tHL8reNCs', 'WRVsOCh907o', 'hq3yfQnllfQ', 'MR5XSOdjKMA'
+            'M97Lq6lYngc', 'csjSuwj4fU0', '51mPjpdFjLQ', // Masha and the Bear
+            'C281NYqrlMg', 'fmzxLHW4GmM', 'XqZsoesa55w', 'yDImFv1Z5wE', 'og1lOorpX3Q', // Cocomelon & Baby Shark
+            '0ywn69h4OBw', 'Ozq39j6wLv8', 'jLh_s7Qv_tE', 'hYn9o8T7Z8g', 'zO8M-4K20Uo', // Lagu Anak Indonesia Part 1
+            '2qJ3r8g5zCg', 'F4tHL8reNCs', 'WRVsOCh907o', 'hq3yfQnllfQ', 'MR5XSOdjKMA', // Lagu Anak Populer
+            '9O0l0mPzL8Y', '7_8yv5R2-eI', 'yWirdnSDsV4', 'e_04ZrNroTo', 'VzB99r_zQYQ', // Bintang Kecil & Roda Bus
+            '6U-9Z_p8dQs', 'd_JzH2XQvU0', 'o_8r9U9r_7o', '_8H_1oE_nEo', '8_8J-R5kG6k', // Kakaktua & Lagu Tradisional
+            'T2T8R1v0u_w', 'Q2r2E8nKq5U' // Tambahan
         ];
-        function tutupVideo() {
-            document.getElementById('yt-player').src = ''; 
-            bukaHalaman('home');
-        }
+        
         function gantiVideo() {
             let randomId = playlist[Math.floor(Math.random() * playlist.length)];
-            document.getElementById('yt-player').src = `https://www.youtube.com/embed/${randomId}?autoplay=1&rel=0`;
+            // Menambahkan parameter controls=1 agar tombol play youtube tidak tersembunyi
+            document.getElementById('yt-player').src = `https://www.youtube.com/embed/${randomId}?autoplay=1&rel=0&controls=1`;
         }
     </script>
 </body>
 </html>
+

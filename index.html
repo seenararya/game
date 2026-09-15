@@ -525,7 +525,7 @@
             { t: 'Kentang', i: '🥔', s: 'Kentang sumber karbohidrat.' },
             { t: 'Ubi', i: '🍠', s: 'Ubi manis mengeyangkan.' },
             { t: 'Bawang Merah', i: '🧅', s: 'Bawang merah bumbu dapur.' },
-            { t: 'Bawang Putih', i: '🧄', s: 'Bawang putih sehat.' },
+            { t: 'Bawang Putih', i: '🄄', s: 'Bawang putih sehat.' },
             { t: 'Timun', i: '🥒', s: 'Timun segar lalapan.' },
             { t: 'Terong', i: '🍆', s: 'Terong ungu.' },
             { t: 'Jamur', i: '🍄', s: 'Jamur lezat dimasak.' },
@@ -575,6 +575,8 @@
         window.speechSynthesis.onvoiceschanged = siapkanSuara;
 
         function ucapkan(text) {
+            // Mencegah error antrean suara
+            if (!('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel(); 
             let speech = new SpeechSynthesisUtterance(text);
             if(suaraPilihan) speech.voice = suaraPilihan;
@@ -586,12 +588,16 @@
         }
 
         function mulaiGame() {
-            // Membuka kunci audio engine browser secara instan
-            if ('speechSynthesis' in window) {
-                let dummy = new SpeechSynthesisUtterance('');
-                window.speechSynthesis.speak(dummy);
-            }
-            bukaHalaman('home', 'Halo Anaya Seena Safira!');
+            // Pindah halaman secara langsung tanpa menunggu antrean audio agar tidak pernah stuck
+            document.getElementById('welcome').classList.remove('active');
+            document.getElementById('home').classList.add('active');
+            document.getElementById('topNav').classList.add('active');
+            window.scrollTo(0, 0);
+
+            // Suara dijalankan setelah halaman berpindah
+            setTimeout(() => {
+                ucapkan('Halo Anaya Seena Safira!');
+            }, 100);
         }
 
         function bukaHalaman(pageId, suaraTeks) {
@@ -639,4 +645,3 @@
     </script>
 </body>
 </html>
-

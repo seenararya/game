@@ -2,7 +2,6 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <!-- Mencegah zoom in/out di semua perangkat -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" type="image/webp" href="seena.webp">
     <title>Game Anaya Seena Safira</title>
@@ -30,11 +29,11 @@
         .bubble:nth-child(5) { width: 50px; height: 50px; left: 90%; animation-duration: 9s; animation-delay: 3s; }
         @keyframes terbang { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
 
-        /* --- NAVBAR MELAYANG DI ATAS (STICKY TOP) --- */
+        /* --- NAVBAR MELAYANG DI ATAS (Diberi jarak agar tidak terlalu mepet) --- */
         .top-navbar {
             display: none; 
             position: fixed;
-            top: 10px; left: 50%;
+            top: 15px; left: 50%;
             transform: translateX(-50%);
             width: 95%; max-width: 1000px;
             background: rgba(255, 255, 255, 0.75);
@@ -74,22 +73,22 @@
         }
         .nav-ikon-btn:active { transform: translateY(3px); box-shadow: 0 0px 0 #b185db; }
 
-        /* --- CONTAINER KONTEN --- */
+        /* --- CONTAINER KONTEN (Diberi jarak atas 85px agar pas, tidak mepet) --- */
         .container {
             display: none; width: 100%; max-width: 1000px; margin: 0 auto;
             flex-direction: column; align-items: center;
-            padding: 70px 15px 40px 15px;
+            padding: 85px 15px 40px 15px;
             animation: fadeIn 0.4s ease-out;
         }
         .container.active { display: flex; }
         
-        #welcome { padding-top: 15vh; justify-content: flex-start; min-height: 100vh; padding-top: 70px; }
+        #welcome { padding-top: 15vh; justify-content: flex-start; min-height: 100vh; padding-top: 85px; }
         #welcome h1 { font-size: 35px; padding: 10px 30px; border-radius: 50px; margin-bottom: 10px; }
         p.subtitle { font-size: 18px; color: #fff; margin-bottom: 25px; font-weight: bold; text-shadow: 1px 1px 2px rgba(93,59,118,0.3); text-align: center;}
 
-        /* --- DESAIN KARTU GELEMBUNG --- */
+        /* --- DESAIN KARTU GELEMBUNG (Ukuran Tetap Sesuai Permintaan) --- */
         .grid-menu, .grid-item { display: grid; gap: 15px; width: 100%; }
-        .grid-menu { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); max-width: 800px; }
+        .grid-menu { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); max-width: 850px; }
         .grid-item { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
         
         .card {
@@ -175,6 +174,8 @@
     <div id="huruf-benda" class="container"><div class="grid-item" id="grid-benda"></div></div>
     <div id="angka" class="container"><div class="grid-item" id="gridAngka"></div></div>
     <div id="hijaiyah" class="container"><div class="grid-item" id="gridHijaiyah"></div></div>
+    <div id="mengaji" class="container"><div class="grid-item" id="gridMengaji"></div></div>
+    <div id="surat" class="container"><div class="grid-item" id="gridSurat"></div></div>
     <div id="sholat" class="container"><div class="grid-item" id="gridSholat"></div></div>
     <div id="doa" class="container"><div class="grid-item" id="gridDoa"></div></div>
     <div id="bentuk" class="container"><div class="grid-item" id="gridBentuk"></div></div>
@@ -200,6 +201,8 @@
             { id: 'huruf-benda', nama: 'Huruf & Benda', ikon: '🍎', suara: 'Huruf dan Benda' },
             { id: 'angka', nama: 'Angka 1-25', ikon: '🔢', suara: 'Belajar Angka' },
             { id: 'hijaiyah', nama: 'Hijaiyah', ikon: '☪️', suara: 'Huruf Hijaiyah' },
+            { id: 'mengaji', nama: 'Kalimat Thayyibah', ikon: '📖', suara: 'Kalimat Thayyibah dan Mengaji' },
+            { id: 'surat', nama: 'Ayat & Surat Pendek', ikon: '📜', suara: 'Ayat dan Surat Pendek' },
             { id: 'sholat', nama: 'Sholat & Surat', ikon: '🕌', suara: 'Gerakan Sholat dan Surat Pendek' },
             { id: 'doa', nama: 'Doa Harian', ikon: '🤲', suara: 'Doa Sehari-hari' },
             { id: 'bentuk', nama: 'Bentuk & Warna', ikon: '🎨', suara: 'Bentuk dan Warna' },
@@ -338,6 +341,47 @@
                         </div>`;
         });
         document.getElementById('gridHijaiyah').innerHTML = hijHtml;
+
+        // --- GAME BARU: KALIMAT THAYYIBAH & MENGAJI ---
+        const mengajiData = [
+            { t: 'Taawudz', i: '🤲', s: 'A’udzu billahi minas syaitonir rojiim.' },
+            { t: 'Basmalah', i: '📖', s: 'Bismillahir rahmanir rohiim.' },
+            { t: 'Hamdalah', i: '🌟', s: 'Alhamdulillahir robbil ‘alamiin.' },
+            { t: 'Subhanallah', i: '✨', s: 'Subhanallah, Maha Suci Allah.' },
+            { t: 'MasyaAllah', i: '🌸', s: 'Masya Allah, atas izin Allah.' },
+            { t: 'InsyaAllah', i: '🌙', s: 'Insya Allah, jika Allah menghendaki.' },
+            { t: 'Allahu Akbar', i: '🕌', s: 'Allahu Akbar, Allah Maha Besar.' },
+            { t: 'Laailahaillallah', i: '💫', s: 'Laa ilaaha illallah, tiada Tuhan selain Allah.' },
+            { t: 'Astaghfirullah', i: '💧', s: 'Astaghfirullahal adhiim, aku memohon ampun kepada Allah.' },
+            { t: 'Innalillahi', i: '🕊️', s: 'Innalillahi wainna ilaihi rojiun.' },
+            { t: 'Sholawat Nabi', i: '💚', s: 'Allahumma sholli ‘ala sayyidina muhammad.' }
+        ];
+        let mgjHtml = '';
+        mengajiData.forEach((mg, idx) => {
+            mgjHtml += `<div class="card" onclick="aksi('${mg.s}', 'mgj${idx}', 'anim-besar')">
+                            <div class="icon" id="mgj${idx}">${mg.i}</div><div class="title">${mg.t}</div>
+                        </div>`;
+        });
+        document.getElementById('gridMengaji').innerHTML = mgjHtml;
+
+        // --- GAME BARU: AYAT & SURAT PENDEK ---
+        const suratData = [
+            { t: 'Ayat Kursi', i: '👑', s: 'Allahu laa ilaaha illa huwal hayyul qoyyum.' },
+            { t: 'Surat Al-Fatihah', i: '📖', s: 'Bismillahir rahmanir rohiim. Alhamdulillahir robbil alamin. Ar rahmanir rohiim. Maliki yawmiddiin.' },
+            { t: 'Surat Al-Ikhlas', i: '⭐', s: 'Qul huwallahu ahad. Allahus somad. Lam yalid walam yulad. Walam yakun lahu kufuwan ahad.' },
+            { t: 'Surat Al-Falaq', i: '🌙', s: 'Qul a’udzu birrobil falaq. Min syarri ma kholaq. Wamin syarri ghoasiqin iza waqob.' },
+            { t: 'Surat An-Nas', i: '☀️', s: 'Qul a’udzu bi rabbin nas. Malikin nas. Ilahin nas.' },
+            { t: 'Surat Al-Kautsar', i: '⛲', s: 'Inna a’thainakal kautsar. Fasholli lirabbika wanhar. Inna syaani'aka huwal abtar.' },
+            { t: 'Surat An-Nasr', i: '🚩', s: 'Idza jaa-a nashrullahi wal fath. Wa ra-aitan naasa yadkhuluna fii diinillahi afwaja.' },
+            { t: 'Surat Al-Lahab', i: '🔥', s: 'Tabbat yada abi lahabiw watabb. Maa aghna 'anhu maaluhuu wama kasab.' }
+        ];
+        let srtHtml = '';
+        suratData.forEach((sr, idx) => {
+            srtHtml += `<div class="card" onclick="aksi('${sr.s}', 'srt${idx}', 'anim-lompat')">
+                            <div class="icon" id="srt${idx}">${sr.i}</div><div class="title">${sr.t}</div>
+                        </div>`;
+        });
+        document.getElementById('gridSurat').innerHTML = srtHtml;
 
         const sholatData = [
             { t: 'Berdiri Tegak', i: '🧍‍♂️', s: 'Berdiri tegak menghadap kiblat.' },
@@ -594,4 +638,3 @@
     </script>
 </body>
 </html>
-

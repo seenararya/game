@@ -33,95 +33,91 @@
         .top-navbar {
             display: none; 
             position: fixed;
-            top: 12px; left: 50%;
+            top: 10px; left: 50%;
             transform: translateX(-50%);
-            width: 95%; max-width: 900px;
-            background: rgba(255, 255, 255, 0.75);
+            width: 96%; max-width: 1000px;
+            background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
             border-radius: 40px;
-            padding: 8px 12px;
+            padding: 6px 12px;
             z-index: 1000;
             box-shadow: 0 4px 15px rgba(93, 59, 118, 0.15);
             border: 2px solid rgba(255, 255, 255, 0.9);
             align-items: center;
-            gap: 10px; /* Jarak antara tombol kembali & menu lain */
+            gap: 8px;
         }
         .top-navbar.active { display: flex; }
 
-        /* Tombol Kembali di Pojok Kiri Navbar */
         .btn-kembali {
             background: #ff7eb3; color: white;
             border: none; border-radius: 25px;
-            padding: 8px 16px; font-size: 15px; font-weight: bold;
-            cursor: pointer; box-shadow: 0 4px 0 #ff4757; transition: 0.2s;
-            display: flex; align-items: center; gap: 5px;
+            padding: 6px 14px; font-size: 14px; font-weight: bold;
+            cursor: pointer; box-shadow: 0 3px 0 #ff4757; transition: 0.2s;
+            display: flex; align-items: center; gap: 4px;
             flex-shrink: 0;
         }
-        .btn-kembali:active { transform: translateY(3px); box-shadow: 0 1px 0 #ff4757; }
+        .btn-kembali:active { transform: translateY(2px); box-shadow: 0 1px 0 #ff4757; }
 
-        /* Kumpulan Ikon Pintasan di Kanan Navbar */
         .nav-icons { 
-            display: flex; gap: 8px; overflow-x: auto; 
-            padding: 4px 0; scrollbar-width: none; flex-grow: 1; justify-content: flex-end;
+            display: flex; gap: 6px; overflow-x: auto; 
+            padding: 2px 0; scrollbar-width: none; flex-grow: 1; justify-content: flex-end;
         }
         .nav-icons::-webkit-scrollbar { display: none; }
         
         .nav-ikon-btn {
             background: rgba(255, 255, 255, 0.9); border: 2px solid #b185db;
-            border-radius: 50%; width: 38px; height: 38px;
+            border-radius: 50%; width: 36px; height: 36px;
             display: flex; justify-content: center; align-items: center;
-            font-size: 18px; cursor: pointer; transition: 0.2s;
-            box-shadow: 0 3px 0 #b185db; flex-shrink: 0;
+            font-size: 16px; cursor: pointer; transition: 0.2s;
+            box-shadow: 0 2px 0 #b185db; flex-shrink: 0;
         }
-        .nav-ikon-btn:active { transform: translateY(3px); box-shadow: 0 0px 0 #b185db; }
+        .nav-ikon-btn:active { transform: translateY(2px); box-shadow: 0 0px 0 #b185db; }
 
-        /* --- CONTAINER KONTEN (Disesuaikan agar tidak tertutup Navbar) --- */
+        /* --- CONTAINER KONTEN --- */
         .container {
-            display: none; width: 100%; max-width: 900px; margin: 0 auto;
+            display: none; width: 100%; max-width: 1000px; margin: 0 auto;
             flex-direction: column; align-items: center;
-            padding: 85px 15px 40px 15px; /* Jarak atas besar khusus tempat Navbar */
-            animation: fadeIn 0.5s ease-out;
+            padding: 75px 15px 40px 15px;
+            animation: fadeIn 0.4s ease-out;
         }
         .container.active { display: flex; }
         
-        /* Halaman Awal (Gelembung Dikecilkan) */
         #welcome { padding-top: 15vh; justify-content: flex-start; min-height: 100vh; }
         #welcome h1 { font-size: 24px; padding: 12px 30px; border-radius: 40px; margin-bottom: 5px; }
         p.subtitle { font-size: 15px; color: #fff; margin-bottom: 25px; font-weight: bold; text-shadow: 1px 1px 2px rgba(93,59,118,0.3); text-align: center;}
 
-        /* Judul Menu Halaman */
         h1 { 
-            font-size: 24px; color: #fff; text-shadow: 2px 2px 4px rgba(93,59,118,0.4); 
-            margin-bottom: 15px; text-align: center;
-            background: rgba(255,255,255,0.25); padding: 8px 25px; border-radius: 40px; backdrop-filter: blur(5px);
+            font-size: 22px; color: #fff; text-shadow: 2px 2px 4px rgba(93,59,118,0.4); 
+            margin-bottom: 12px; text-align: center;
+            background: rgba(255,255,255,0.25); padding: 6px 20px; border-radius: 40px; backdrop-filter: blur(5px);
             border: 2px solid rgba(255,255,255,0.5);
             animation: floatSlow 3s ease-in-out infinite alternate;
         }
 
-        /* --- DESAIN KARTU GELEMBUNG (DIPERKECIL) --- */
-        .grid-menu, .grid-item { display: grid; gap: 12px; width: 100%; }
-        .grid-menu { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); max-width: 500px; }
+        /* --- DESAIN KARTU GELEMBUNG --- */
+        .grid-menu, .grid-item { display: grid; gap: 10px; width: 100%; }
+        .grid-menu { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); max-width: 700px; }
         .grid-item { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
         
         .card {
             background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(10px);
-            border-radius: 25px; /* Gelembung mungil */
+            border-radius: 22px;
             cursor: pointer;
-            box-shadow: 0 6px 12px rgba(93, 59, 118, 0.1), inset 0 0 10px rgba(255,255,255,0.9);
+            box-shadow: 0 5px 10px rgba(93, 59, 118, 0.1), inset 0 0 8px rgba(255,255,255,0.9);
             border: 2px solid rgba(255, 255, 255, 0.9); border-bottom: 4px solid #b185db;
             transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 12px 8px; text-align: center;
+            padding: 10px 6px; text-align: center;
             animation: floatCard 3s ease-in-out infinite alternate;
         }
-        /* Variasi Warna Card */
         .card:nth-child(even) { animation-delay: 0.5s; border-bottom-color: #f7a8b8; }
         .card:nth-child(3n) { animation-delay: 1s; border-bottom-color: #8ec5fc; }
         .card:nth-child(5n) { animation-delay: 1.5s; border-bottom-color: #fce38a; }
-        .card:active { transform: scale(0.9) !important; box-shadow: 0 2px 5px rgba(93, 59, 118, 0.2); animation: none; }
+        .card:active { transform: scale(0.9) !important; box-shadow: 0 2px 4px rgba(93, 59, 118, 0.2); animation: none; }
 
-        .icon { font-size: 36px; margin-bottom: 5px; display: inline-block; filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2)); }
-        .title { font-size: 13px; font-weight: bold; color: #5d3b76; line-height: 1.2; }
-        .huruf-teks { font-size: 42px !important; font-weight: 900; color: #9c27b0; text-shadow: 2px 2px 0 #fff; margin:0;}
+        .icon { font-size: 32px; margin-bottom: 4px; display: inline-block; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2)); }
+        .title { font-size: 12px; font-weight: bold; color: #5d3b76; line-height: 1.1; }
+        .huruf-teks { font-size: 38px !important; font-weight: 900; color: #9c27b0; text-shadow: 2px 2px 0 #fff; margin:0;}
+        .arab-teks { font-size: 36px !important; font-weight: 900; color: #00796b; margin: 0; }
 
         .btn-start { 
             background: linear-gradient(to right, #9d4edd, #c77dff); color: white; 
@@ -131,21 +127,19 @@
         }
         .btn-start:active { transform: translateY(4px); box-shadow: 0 2px 0 #7b2cbf; }
 
-        /* Video Container (Responsif) */
         .video-wrapper { 
             width: 100%; max-width: 750px; aspect-ratio: 16/9; 
             border-radius: 20px; overflow: hidden; border: 5px solid white; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3); background: black; position: relative; margin-bottom: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); background: black; position: relative; margin-bottom: 12px;
         }
         .video-wrapper iframe { width: 100%; height: 100%; border: none; position: absolute; top:0; left:0;}
 
-        /* --- KUMPULAN ANIMASI --- */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes floatSlow { 0% { transform: translateY(0); } 100% { transform: translateY(-8px); } }
-        @keyframes floatCard { 0% { transform: translateY(0px); } 100% { transform: translateY(-5px); } }
+        /* Animasi */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes floatSlow { 0% { transform: translateY(0); } 100% { transform: translateY(-6px); } }
+        @keyframes floatCard { 0% { transform: translateY(0px); } 100% { transform: translateY(-4px); } }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         
-        /* Animasi Gerakan Anak */
         .anim-kepala { animation: geleng 1s; } @keyframes geleng { 0%,100%{transform:rotate(0);} 25%{transform:rotate(-25deg);} 75%{transform:rotate(25deg);} }
         .anim-pundak { animation: naikturun 1s; } @keyframes naikturun { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
         .anim-lutut { animation: tekuk 1s; } @keyframes tekuk { 0%,100%{transform:scale(1,1);} 50%{transform:scale(1.1, 0.7) translateY(10px);} }
@@ -162,20 +156,13 @@
         <div class="bubble"></div><div class="bubble"></div>
     </div>
 
-    <!-- NAVBAR ATAS (Pojok Kiri: Kembali | Kanan: Menu Pintasan) -->
+    <!-- NAVBAR ATAS -->
     <nav class="top-navbar" id="topNav">
         <button class="btn-kembali" onclick="bukaHalaman('home')">⬅️<span style="display:none;" id="teksKembali">Home</span></button>
-        <div class="nav-icons">
-            <div class="nav-ikon-btn" onclick="bukaHalaman('gerakan', 'Bermain Gerakan')" title="Gerakan">🤸</div>
-            <div class="nav-ikon-btn" onclick="bukaHalaman('hewan', 'Suara Hewan')" title="Hewan">🐶</div>
-            <div class="nav-ikon-btn" onclick="bukaHalaman('huruf-murni', 'Abjad')" title="Abjad">🔤</div>
-            <div class="nav-ikon-btn" onclick="bukaHalaman('huruf-benda', 'Benda')" title="Benda">🍎</div>
-            <div class="nav-ikon-btn" onclick="bukaHalaman('angka', 'Angka')" title="Angka">🔢</div>
-            <div class="nav-ikon-btn" onclick="bukaHalaman('video', 'Nonton Video')" title="Video">📺</div>
-        </div>
+        <div class="nav-icons" id="navIconsContainer"></div>
     </nav>
 
-    <!-- HALAMAN AWAL (Welcome) -->
+    <!-- HALAMAN AWAL -->
     <div id="welcome" class="container active">
         <div style="font-size: 45px; animation: floatSlow 2s infinite alternate;">👑</div>
         <h1>ANAYA SEENA SAFIRA</h1>
@@ -186,71 +173,22 @@
     <!-- MENU UTAMA -->
     <div id="home" class="container">
         <h1>Pilih Permainan ✨</h1>
-        <div class="grid-menu">
-            <div class="card" onclick="bukaHalaman('gerakan', 'Ayo gerakkan tubuhmu!')">
-                <div class="icon anim-lompat">🤸‍♀️</div><div class="title">Gerakan</div>
-            </div>
-            <div class="card" onclick="bukaHalaman('hewan', 'Tebak suara hewan!')">
-                <div class="icon anim-goyang">🐶</div><div class="title">Suara Hewan</div>
-            </div>
-            <div class="card" onclick="bukaHalaman('huruf-murni', 'Belajar Abjad A sampai Z!')">
-                <div class="icon anim-lompat">🔤</div><div class="title">Abjad A-Z</div>
-            </div>
-            <div class="card" onclick="bukaHalaman('huruf-benda', 'Belajar Huruf dan Benda!')">
-                <div class="icon anim-lompat">🍎</div><div class="title">Huruf & Benda</div>
-            </div>
-            <div class="card" onclick="bukaHalaman('angka', 'Belajar Angka!')">
-                <div class="icon anim-lompat">🔢</div><div class="title">Angka 1-10</div>
-            </div>
-            <div class="card" onclick="bukaHalaman('video', 'Waktunya nonton!')">
-                <div class="icon anim-lompat">📺</div><div class="title">Nonton Video</div>
-            </div>
-        </div>
+        <div class="grid-menu" id="menuGridContainer"></div>
     </div>
 
-    <!-- MENU 1: GERAKAN (14 Item) -->
+    <!-- MENU 1: GERAKAN (32 Item) -->
     <div id="gerakan" class="container">
         <h1>Ayo Bergerak! 🏃‍♀️</h1>
-        <div class="grid-item">
-            <div class="card" onclick="aksi('Kepala', 'g1', 'anim-kepala')"><div class="icon" id="g1">👦</div><div class="title">Kepala</div></div>
-            <div class="card" onclick="aksi('Pundak', 'g2', 'anim-pundak')"><div class="icon" id="g2">🤷‍♀️</div><div class="title">Pundak</div></div>
-            <div class="card" onclick="aksi('Lutut', 'g3', 'anim-lutut')"><div class="icon" id="g3">🦵</div><div class="title">Lutut</div></div>
-            <div class="card" onclick="aksi('Kaki', 'g4', 'anim-kaki')"><div class="icon" id="g4">🦶</div><div class="title">Kaki</div></div>
-            <div class="card" onclick="aksi('Mata', 'g5', 'anim-besar')"><div class="icon" id="g5">👀</div><div class="title">Mata</div></div>
-            <div class="card" onclick="aksi('Telinga', 'g6', 'anim-goyang')"><div class="icon" id="g6">👂</div><div class="title">Telinga</div></div>
-            <div class="card" onclick="aksi('Hidung', 'g7', 'anim-besar')"><div class="icon" id="g7">👃</div><div class="title">Hidung</div></div>
-            <div class="card" onclick="aksi('Mulut', 'g8', 'anim-besar')"><div class="icon" id="g8">👄</div><div class="title">Mulut</div></div>
-            <div class="card" onclick="aksi('Tangan', 'g9', 'anim-goyang')"><div class="icon" id="g9">🖐️</div><div class="title">Tangan</div></div>
-            <div class="card" onclick="aksi('Perut', 'g10', 'anim-besar')"><div class="icon" id="g10">🤰</div><div class="title">Perut</div></div>
-            <div class="card" onclick="aksi('Rambut', 'g11', 'anim-goyang')"><div class="icon" id="g11">💇‍♀️</div><div class="title">Rambut</div></div>
-            <div class="card" onclick="aksi('Pipi', 'g12', 'anim-besar')"><div class="icon" id="g12">😊</div><div class="title">Pipi</div></div>
-            <div class="card" onclick="aksi('Gigi', 'g13', 'anim-lompat')"><div class="icon" id="g13">😁</div><div class="title">Gigi</div></div>
-            <div class="card" onclick="aksi('Dagu', 'g14', 'anim-pundak')"><div class="icon" id="g14">🧔</div><div class="title">Dagu</div></div>
-        </div>
+        <div class="grid-item" id="gridGerakan"></div>
     </div>
 
-    <!-- MENU 2: HEWAN (14 Item) -->
+    <!-- MENU 2: HEWAN (32 Item) -->
     <div id="hewan" class="container">
         <h1>Suara Hewan 🐾</h1>
-        <div class="grid-item">
-            <div class="card" onclick="aksi('Kucing. Meong meong!', 'hw1', 'anim-lompat')"><div class="icon" id="hw1">🐱</div><div class="title">Kucing</div></div>
-            <div class="card" onclick="aksi('Anjing. Guk guk guk!', 'hw2', 'anim-goyang')"><div class="icon" id="hw2">🐶</div><div class="title">Anjing</div></div>
-            <div class="card" onclick="aksi('Sapi. Moooo!', 'hw3', 'anim-besar')"><div class="icon" id="hw3">🐄</div><div class="title">Sapi</div></div>
-            <div class="card" onclick="aksi('Bebek. Kwek kwek kwek!', 'hw4', 'anim-goyang')"><div class="icon" id="hw4">🦆</div><div class="title">Bebek</div></div>
-            <div class="card" onclick="aksi('Ayam. Petok petok!', 'hw5', 'anim-lompat')"><div class="icon" id="hw5">🐓</div><div class="title">Ayam</div></div>
-            <div class="card" onclick="aksi('Kambing. Mbeeeek!', 'hw6', 'anim-goyang')"><div class="icon" id="hw6">🐐</div><div class="title">Kambing</div></div>
-            <div class="card" onclick="aksi('Burung. Cuit cuit cuit!', 'hw7', 'anim-lompat')"><div class="icon" id="hw7">🐦</div><div class="title">Burung</div></div>
-            <div class="card" onclick="aksi('Gajah. Tooooet!', 'hw8', 'anim-besar')"><div class="icon" id="hw8">🐘</div><div class="title">Gajah</div></div>
-            <div class="card" onclick="aksi('Singa. Haaauuum!', 'hw9', 'anim-besar')"><div class="icon" id="hw9">🦁</div><div class="title">Singa</div></div>
-            <div class="card" onclick="aksi('Monyet. U u a a!', 'hw10', 'anim-goyang')"><div class="icon" id="hw10">🐒</div><div class="title">Monyet</div></div>
-            <div class="card" onclick="aksi('Kuda. Hiii Haaa!', 'hw11', 'anim-lompat')"><div class="icon" id="hw11">🐴</div><div class="title">Kuda</div></div>
-            <div class="card" onclick="aksi('Harimau. Rrrrrroooaaar!', 'hw12', 'anim-besar')"><div class="icon" id="hw12">🐯</div><div class="title">Harimau</div></div>
-            <div class="card" onclick="aksi('Katak. Teot teblung!', 'hw13', 'anim-goyang')"><div class="icon" id="hw13">🐸</div><div class="title">Katak</div></div>
-            <div class="card" onclick="aksi('Tikus. Cit cit cit!', 'hw14', 'anim-lompat')"><div class="icon" id="hw14">🐭</div><div class="title">Tikus</div></div>
-        </div>
+        <div class="grid-item" id="gridHewan"></div>
     </div>
 
-    <!-- MENU 3: HURUF MURNI (A-Z) -->
+    <!-- MENU 3: ABJAD A-Z -->
     <div id="huruf-murni" class="container">
         <h1>Abjad A - Z 🔤</h1>
         <div class="grid-item" id="grid-abjad"></div>
@@ -262,38 +200,157 @@
         <div class="grid-item" id="grid-benda"></div>
     </div>
 
-    <!-- MENU 5: ANGKA 1-10 -->
+    <!-- MENU 5: ANGKA 1-25 -->
     <div id="angka" class="container">
-        <h1>Angka 1-10 🔢</h1>
-        <div class="grid-item">
-            <div class="card" onclick="aksi('Satu', 'a1', 'anim-lompat')"><div class="icon" id="a1">1️⃣</div><div class="title">Satu</div></div>
-            <div class="card" onclick="aksi('Dua', 'a2', 'anim-lompat')"><div class="icon" id="a2">2️⃣</div><div class="title">Dua</div></div>
-            <div class="card" onclick="aksi('Tiga', 'a3', 'anim-lompat')"><div class="icon" id="a3">3️⃣</div><div class="title">Tiga</div></div>
-            <div class="card" onclick="aksi('Empat', 'a4', 'anim-lompat')"><div class="icon" id="a4">4️⃣</div><div class="title">Empat</div></div>
-            <div class="card" onclick="aksi('Lima', 'a5', 'anim-lompat')"><div class="icon" id="a5">5️⃣</div><div class="title">Lima</div></div>
-            <div class="card" onclick="aksi('Enam', 'a6', 'anim-lompat')"><div class="icon" id="a6">6️⃣</div><div class="title">Enam</div></div>
-            <div class="card" onclick="aksi('Tujuh', 'a7', 'anim-lompat')"><div class="icon" id="a7">7️⃣</div><div class="title">Tujuh</div></div>
-            <div class="card" onclick="aksi('Delapan', 'a8', 'anim-lompat')"><div class="icon" id="a8">8️⃣</div><div class="title">Delapan</div></div>
-            <div class="card" onclick="aksi('Sembilan', 'a9', 'anim-lompat')"><div class="icon" id="a9">9️⃣</div><div class="title">Sembilan</div></div>
-            <div class="card" onclick="aksi('Sepuluh', 'a10', 'anim-lompat')"><div class="icon" id="a10">🔟</div><div class="title">Sepuluh</div></div>
-        </div>
+        <h1>Angka 1 - 25 🔢</h1>
+        <div class="grid-item" id="gridAngka"></div>
     </div>
 
-    <!-- MENU 6: YOUTUBE -->
+    <!-- MENU 6: HIJAIYAH -->
+    <div id="hijaiyah" class="container">
+        <h1>Huruf Hijaiyah ☪️</h1>
+        <div class="grid-item" id="gridHijaiyah"></div>
+    </div>
+
+    <!-- MENU 7: GERAKAN SHOLAT -->
+    <div id="sholat" class="container">
+        <h1>Gerakan Sholat & Ibadah 🕌</h1>
+        <div class="grid-item" id="gridSholat"></div>
+    </div>
+
+    <!-- MENU 8: DOA SEHARI-HARI -->
+    <div id="doa" class="container">
+        <h1>Doa Sehari-hari 🙏</h1>
+        <div class="grid-item" id="gridDoa"></div>
+    </div>
+
+    <!-- MENU 9: BENTUK & WARNA -->
+    <div id="bentuk" class="container">
+        <h1>Bentuk & Warna 🎨</h1>
+        <div class="grid-item" id="gridBentuk"></div>
+    </div>
+
+    <!-- MENU 10: PROFESI -->
+    <div id="profesi" class="container">
+        <h1>Profesi & Pekerjaan 👩‍⚕️</h1>
+        <div class="grid-item" id="gridProfesi"></div>
+    </div>
+
+    <!-- MENU 11: BUAH & SAYUR -->
+    <div id="buah" class="container">
+        <h1>Buah & Sayur Segar 🍓</h1>
+        <div class="grid-item" id="gridBuah"></div>
+    </div>
+
+    <!-- MENU 12: YOUTUBE -->
     <div id="video" class="container">
         <h1>Nonton Video 📺</h1>
         <div class="video-wrapper">
-            <!-- Parameter controls=1 ditambahkan agar tombol play di youtube berfungsi optimal -->
             <iframe id="yt-player" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
-        <button class="btn-start" style="font-size:16px; padding:10px 25px; margin-top:5px; background:#ff9a9e; border-color:#ff9a9e;" onclick="gantiVideo()">Acak Video Lainnya 🔄</button>
+        <button class="btn-start" style="font-size:15px; padding:10px 22px; margin-top:5px; background:#ff9a9e; border-color:#ff9a9e;" onclick="gantiVideo()">Acak Video Lainnya 🔄</button>
     </div>
 
     <script>
-        // Memunculkan teks "Home" di tombol kembali khusus untuk tablet/laptop layar lebar
         if(window.innerWidth > 600) { document.getElementById('teksKembali').style.display = 'inline'; }
 
-        // Data Huruf & Benda
+        const daftarMenu = [
+            { id: 'gerakan', nama: 'Gerakan', ikon: '🤸‍♀️', suara: 'Bermain Gerakan' },
+            { id: 'hewan', nama: 'Suara Hewan', ikon: '🐶', suara: 'Suara Hewan' },
+            { id: 'huruf-murni', nama: 'Abjad A-Z', ikon: '🔤', suara: 'Belajar Abjad' },
+            { id: 'huruf-benda', nama: 'Huruf & Benda', ikon: '🍎', suara: 'Huruf dan Benda' },
+            { id: 'angka', nama: 'Angka 1-25', ikon: '🔢', suara: 'Belajar Angka' },
+            { id: 'hijaiyah', nama: 'Hijaiyah', ikon: '☪️', suara: 'Huruf Hijaiyah' },
+            { id: 'sholat', nama: 'Gerakan Sholat', ikon: '🕌', suara: 'Gerakan Sholat' },
+            { id: 'doa', nama: 'Doa Harian', ikon: '🤲', suara: 'Doa Sehari-hari' },
+            { id: 'bentuk', nama: 'Bentuk & Warna', ikon: '🎨', suara: 'Bentuk dan Warna' },
+            { id: 'profesi', nama: 'Profesi', ikon: '👩‍⚕️', suara: 'Mengenal Profesi' },
+            { id: 'buah', nama: 'Buah & Sayur', ikon: '🍓', suara: 'Buah dan Sayur' },
+            { id: 'video', nama: 'YouTube Anak', ikon: '📺', suara: 'Nonton Video' }
+        ];
+
+        let navHtml = '';
+        let menuHtml = '';
+        daftarMenu.forEach(m => {
+            navHtml += `<div class="nav-ikon-btn" onclick="bukaHalaman('${m.id}', '${m.suara}')" title="${m.nama}">${m.ikon}</div>`;
+            menuHtml += `<div class="card" onclick="bukaHalaman('${m.id}', '${m.suara}')">
+                            <div class="icon anim-lompat">${m.ikon}</div><div class="title">${m.nama}</div>
+                         </div>`;
+        });
+        document.getElementById('navIconsContainer').innerHTML = navHtml;
+        document.getElementById('menuGridContainer').innerHTML = menuHtml;
+
+        // GERAKAN (32 Item)
+        const dataGerakan = [
+            { t: 'Kepala', i: '👦', a: 'anim-kepala' }, { t: 'Pundak', i: '🤷‍♀️', a: 'anim-pundak' }, 
+            { t: 'Lutut', i: '🦵', a: 'anim-lutut' }, { t: 'Kaki', i: '🦶', a: 'anim-kaki' }, 
+            { t: 'Mata', i: '👀', a: 'anim-besar' }, { t: 'Telinga', i: '👂', a: 'anim-goyang' }, 
+            { t: 'Hidung', i: '👃', a: 'anim-besar' }, { t: 'Mulut', i: '👄', a: 'anim-besar' }, 
+            { t: 'Tangan', i: '🖐️', a: 'anim-goyang' }, { t: 'Perut', i: '🤰', a: 'anim-besar' }, 
+            { t: 'Rambut', i: '💇‍♀️', a: 'anim-goyang' }, { t: 'Pipi', i: '😊', a: 'anim-besar' }, 
+            { t: 'Gigi', i: '😁', a: 'anim-lompat' }, { t: 'Dagu', i: '🧔', a: 'anim-pundak' },
+            { t: 'Alis', i: '🤨', a: 'anim-besar' }, { t: 'Dahi', i: '💆‍♀️', a: 'anim-pundak' },
+            { t: 'Bibir', i: '💋', a: 'anim-besar' }, { t: 'Lidah', i: '👅', a: 'anim-lompat' },
+            { t: 'Dada', i: '🫀', a: 'anim-besar' }, { t: 'Punggung', i: '🚶‍♀️', a: 'anim-pundak' },
+            { t: 'Lengan', i: '💪', a: 'anim-lompat' }, { t: 'Siku', i: '🦾', a: 'anim-goyang' },
+            { t: 'Pergelangan', i: '🤝', a: 'anim-goyang' }, { t: 'Jari Tangan', i: '✌️', a: 'anim-lompat' },
+            { t: 'Kuku', i: '💅', a: 'anim-besar' }, { t: 'Paha', i: '👖', a: 'anim-pundak' },
+            { t: 'Betis', i: '🧦', a: 'anim-lompat' }, { t: 'Mata Kaki', i: '👟', a: 'anim-goyang' },
+            { t: 'Tumit', i: '👞', a: 'anim-pundak' }, { t: 'Jari Kaki', i: '🦶', a: 'anim-lompat' },
+            { t: 'Leher', i: '🧣', a: 'anim-goyang' }, { t: 'Bahu', i: '🤷‍♂️', a: 'anim-pundak' }
+        ];
+        let gerHtml = '';
+        dataGerakan.forEach((g, idx) => {
+            gerHtml += `<div class="card" onclick="aksi('${g.t}', 'g${idx}', '${g.a}')">
+                            <div class="icon" id="g${idx}">${g.i}</div><div class="title">${g.t}</div>
+                        </div>`;
+        });
+        document.getElementById('gridGerakan').innerHTML = gerHtml;
+
+        // HEWAN (32 Item)
+        const dataHewan = [
+            { t: 'Kucing', i: '🐱', s: 'Kucing. Meong meong!', a: 'anim-lompat' },
+            { t: 'Anjing', i: '🐶', s: 'Anjing. Guk guk guk!', a: 'anim-goyang' },
+            { t: 'Sapi', i: '🐄', s: 'Sapi. Moooo!', a: 'anim-besar' },
+            { t: 'Bebek', i: '🦆', s: 'Bebek. Kwek kwek kwek!', a: 'anim-goyang' },
+            { t: 'Ayam', i: '🐓', s: 'Ayam. Petok petok!', a: 'anim-lompat' },
+            { t: 'Kambing', i: '🐐', s: 'Kambing. Mbeeeek!', a: 'anim-goyang' },
+            { t: 'Burung', i: '🐦', s: 'Burung. Cuit cuit!', a: 'anim-lompat' },
+            { t: 'Gajah', i: '🐘', s: 'Gajah. Tooooet!', a: 'anim-besar' },
+            { t: 'Singa', i: '🦁', s: 'Singa. Haaauuum!', a: 'anim-besar' },
+            { t: 'Monyet', i: '🐒', s: 'Monyet. U u a a!', a: 'anim-goyang' },
+            { t: 'Kuda', i: '🐴', s: 'Kuda. Hiiih haaa!', a: 'anim-lompat' },
+            { t: 'Harimau', i: '🐯', s: 'Harimau. Rrrrrroaar!', a: 'anim-besar' },
+            { t: 'Katak', i: '🐸', s: 'Katak. Teot teblung!', a: 'anim-goyang' },
+            { t: 'Tikus', i: '🐭', s: 'Tikus. Cit cit cit!', a: 'anim-lompat' },
+            { t: 'Kelinci', i: '🐰', s: 'Kelinci loncat-loncat!', a: 'anim-lompat' },
+            { t: 'Babi', i: '🐷', s: 'Babi. Oet oet!', a: 'anim-besar' },
+            { t: 'Ular', i: '🐍', s: 'Ular. Ssssssh!', a: 'anim-goyang' },
+            { t: 'Ikan', i: '🐟', s: 'Ikan berenang di air!', a: 'anim-goyang' },
+            { t: 'Kura-kura', i: '🐢', s: 'Kura-kura berjalan lambat.', a: 'anim-pundak' },
+            { t: 'Kepiting', i: '🦀', s: 'Kepiting berjalan menyamping.', a: 'anim-goyang' },
+            { t: 'Kupu-kupu', i: '🦋', s: 'Kupu-kupu terbang cantik.', a: 'anim-lompat' },
+            { t: 'Lebah', i: '🐝', s: 'Lebah. Bzzzzzt!', a: 'anim-goyang' },
+            { t: 'Lalat', i: '🪰', s: 'Lalat terbang berputar.', a: 'anim-lompat' },
+            { t: 'Panda', i: '🐼', s: 'Panda makan bambu.', a: 'anim-besar' },
+            { t: 'Beruang', i: '🐻', s: 'Beruang besar.', a: 'anim-besar' },
+            { t: 'Jerapah', i: '🦒', s: 'Jerapah berleher panjang.', a: 'anim-besar' },
+            { t: 'Zebra', i: '🦓', s: 'Zebra belang-belang.', a: 'anim-lompat' },
+            { t: 'Pinguin', i: '🐧', s: 'Pinguin berjalan lucu.', a: 'anim-goyang' },
+            { t: 'Kangguru', i: '🦘', s: 'Kangguru melompat tinggi.', a: 'anim-lompat' },
+            { t: 'Elang', i: '🦅', s: 'Elang terbang tinggi.', a: 'anim-lompat' },
+            { t: 'Angsa', i: '🦢', s: 'Angsa putih.', a: 'anim-goyang' },
+            { t: 'Buaya', i: '🐊', s: 'Buaya membuka mulut.', a: 'anim-besar' }
+        ];
+        let hwHtml = '';
+        dataHewan.forEach((h, idx) => {
+            hwHtml += `<div class="card" onclick="aksi('${h.s}', 'hw${idx}', '${h.a}')">
+                            <div class="icon" id="hw${idx}">${h.i}</div><div class="title">${h.t}</div>
+                        </div>`;
+        });
+        document.getElementById('gridHewan').innerHTML = hwHtml;
+
+        // ABJAD & BENDA
         const hurufData = [
             { h: 'A', b: 'Apel', e: '🍎' }, { h: 'B', b: 'Bola', e: '⚽' }, { h: 'C', b: 'Cicak', e: '🦎' },
             { h: 'D', b: 'Domba', e: '🐑' }, { h: 'E', b: 'Es Krim', e: '🍦' }, { h: 'F', b: 'Foto', e: '📸' },
@@ -305,7 +362,6 @@
             { h: 'V', b: 'Vas', e: '🏺' }, { h: 'W', b: 'Warna', e: '🎨' }, { h: 'X', b: 'Xilofon', e: '🎹' },
             { h: 'Y', b: 'Yoyo', e: '🪀' }, { h: 'Z', b: 'Zebra', e: '🦓' }
         ];
-
         let abjadHtml = ''; let bendaHtml = '';
         hurufData.forEach((item, index) => {
             abjadHtml += `<div class="card" onclick="aksi('${item.h}', 'hm${index}', 'anim-lompat')">
@@ -318,7 +374,135 @@
         document.getElementById('grid-abjad').innerHTML = abjadHtml;
         document.getElementById('grid-benda').innerHTML = bendaHtml;
 
-        // PENGATURAN SUARA INDONESIA (Diperlembut)
+        // ANGKA 1-25
+        const namaAngka = ["", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", 
+                           "Sebelas", "Dua Belas", "Tiga Belas", "Empat Belas", "Lima Belas", "Enam Belas", "Tujuh Belas", "Delapan Belas", "Sembilan Belas", "Dua Puluh",
+                           "Dua Puluh Satu", "Dua Puluh Dua", "Dua Puluh Tiga", "Dua Puluh Empat", "Dua Puluh Lima"];
+        let angkaHtml = '';
+        for(let i=1; i<=25; i++) {
+            angkaHtml += `<div class="card" onclick="aksi('${namaAngka[i]}', 'ang${i}', 'anim-lompat')">
+                            <div class="icon" id="ang${i}">${i}</div><div class="title">${namaAngka[i]}</div>
+                          </div>`;
+        }
+        document.getElementById('gridAngka').innerHTML = angkaHtml;
+
+        // HIJAIYAH
+        const hijaiyahData = [
+            { ar: 'ا', nm: 'Alif' }, { ar: 'ب', nm: 'Ba' }, { ar: 'ت', nm: 'Ta' }, { ar: 'ث', nm: 'Tsa' },
+            { ar: 'ج', nm: 'Jim' }, { ar: 'ح', nm: 'Ha' }, { ar: 'خ', nm: 'Kha' }, { ar: 'د', nm: 'Dal' },
+            { ar: 'ذ', nm: 'Dzal' }, { ar: 'ر', nm: 'Ra' }, { ar: 'ز', nm: 'Zai' }, { ar: 'س', nm: 'Sin' },
+            { ar: 'ش', nm: 'Syin' }, { ar: 'ص', nm: 'Shad' }, { ar: 'ض', nm: 'Dhad' }, { ar: 'ط', nm: 'Thah' },
+            { ar: 'ظ', nm: 'Zhah' }, { ar: 'ع', nm: 'Ain' }, { ar: 'غ', nm: 'Ghain' }, { ar: 'ف', nm: 'Fa' },
+            { ar: 'ق', nm: 'Qaf' }, { ar: 'ك', nm: 'Kaf' }, { ar: 'ل', nm: 'Lam' }, { ar: 'م', nm: 'Mim' },
+            { ar: 'ن', nm: 'Nun' }, { ar: 'هـ', nm: 'Ha' }, { ar: 'و', nm: 'Wau' }, { ar: 'ي', nm: 'Ya' }
+        ];
+        let hijHtml = '';
+        hijaiyahData.forEach((h, idx) => {
+            hijHtml += `<div class="card" onclick="aksi('${h.nm}', 'hij${idx}', 'anim-lompat')">
+                            <div class="icon arab-teks" id="hij${idx}">${h.ar}</div><div class="title">${h.nm}</div>
+                        </div>`;
+        });
+        document.getElementById('gridHijaiyah').innerHTML = hijHtml;
+
+        // SHOLAT
+        const sholatData = [
+            { t: 'Berdiri Tegak', i: '🧍‍♂️', s: 'Berdiri tegak menghadap kiblat.' },
+            { t: 'Takbiratul Ihram', i: '🙌', s: 'Takbiratul ihram. Allahu Akbar!' },
+            { t: 'Sedekap', i: '🤲', s: 'Bersedekap membaca surat Al-Fatihah.' },
+            { t: 'Ruku', i: '🙇‍♂️', s: 'Ruku. Subhana robbiyal adzimi wabihamdih.' },
+            { t: 'Iktidal', i: '🙋‍♂️', s: 'Iktidal. Samiallahu liman hamidah.' },
+            { t: 'Sujud', i: '🙇', s: 'Sujud. Subhana robbiyal alaa wabihamdih.' },
+            { t: 'Duduk di Antara Dua Sujud', i: '🧘‍♂️', s: 'Duduk di antara dua sujud. Robbighfirlii warhamnii.' },
+            { t: 'Tahiyyat Akhir', i: '🧎‍♂️', s: 'Tahiyyat akhir dan salam.' },
+            { t: 'Berdoa', i: '🤲', s: 'Berdoa kepada Allah SWT.' },
+            { t: 'Dzikir', i: '📿', s: 'Mendawamkan dzikir harian.' }
+        ];
+        let shlHtml = '';
+        sholatData.forEach((sh, idx) => {
+            shlHtml += `<div class="card" onclick="aksi('${sh.s}', 'shl${idx}', 'anim-besar')">
+                            <div class="icon" id="shl${idx}">${sh.i}</div><div class="title">${sh.t}</div>
+                        </div>`;
+        });
+        document.getElementById('gridSholat').innerHTML = shlHtml;
+
+        // DOA
+        const doaData = [
+            { t: 'Doa Makan', i: '🍽️', s: 'Doa sebelum makan. Allahumma barik lana fi ma razaqtna wa qina adzabannar.' },
+            { t: 'Doa Tidur', i: '🛌', s: 'Doa sebelum tidur. Bismika allahumma ahya wa bismika amuut.' },
+            { t: 'Doa Bangun Tidur', i: '⏰', s: 'Doa bangun tidur. Alhamdulillahilladhi ahyana ba’da ma amatana wa ilaihin nusyur.' },
+            { t: 'Doa Masuk Kamar Mandi', i: '🚪', s: 'Doa masuk kamar mandi. Allahumma inni a’udzubika minal khubutsi wal khabaits.' },
+            { t: 'Doa Keluar Kamar Mandi', i: '🚿', s: 'Doa keluar kamar mandi. Ghufranaka.' },
+            { t: 'Doa Kedua Orang Tua', i: '👨‍👩‍👦', s: 'Doa untuk orang tua. Robbighfirlii wa liwaalidayya warhamhuma kamaa rabbayaanii shagiiraa.' },
+            { t: 'Doa Kebaikan Dunia Akhirat', i: '🌍', s: 'Doa kebaikan dunia akhirat. Robbana atina fid dunya hasanah wa fil akhirati hasanah wa qina adzabannar.' },
+            { t: 'Doa Masuk Rumah', i: '🏡', s: 'Doa masuk rumah dengan berkah.' }
+        ];
+        let doaHtml = '';
+        doaData.forEach((d, idx) => {
+            doaHtml += `<div class="card" onclick="aksi('${d.s}', 'doa${idx}', 'anim-lompat')">
+                            <div class="icon" id="doa${idx}">${d.i}</div><div class="title">${d.t}</div>
+                        </div>`;
+        });
+        document.getElementById('gridDoa').innerHTML = doaHtml;
+
+        // BENTUK & WARNA
+        const bentukData = [
+            { t: 'Lingkaran Merah', i: '🔴', s: 'Lingkaran Warna Merah' },
+            { t: 'Kotak Biru', i: '🟦', s: 'Kotak Warna Biru' },
+            { t: 'Segitiga Hijau', i: '🟢', s: 'Segitiga Warna Hijau' },
+            { t: 'Bintang Kuning', i: '⭐', s: 'Bintang Warna Kuning' },
+            { t: 'Hati Ungu', i: '💜', s: 'Hati Warna Ungu' },
+            { t: 'Warna Jingga', i: '🟠', s: 'Warna Jingga' },
+            { t: 'Warna Merah Muda', i: '🌸', s: 'Warna Merah Muda' },
+            { t: 'Warna Putih', i: '⚪', s: 'Warna Putih' },
+            { t: 'Warna Hitam', i: '⚫', s: 'Warna Hitam' }
+        ];
+        let bntHtml = '';
+        bentukData.forEach((bn, idx) => {
+            bntHtml += `<div class="card" onclick="aksi('${bn.s}', 'bnt${idx}', 'anim-goyang')">
+                            <div class="icon" id="bnt${idx}">${bn.i}</div><div class="title">${bn.t}</div>
+                        </div>`;
+        });
+        document.getElementById('gridBentuk').innerHTML = bntHtml;
+
+        // PROFESI
+        const profesiData = [
+            { t: 'Dokter', i: '👩‍⚕️', s: 'Dokter menyembuhkan orang sakit.' },
+            { t: 'Guru', i: '👩‍🏫', s: 'Guru mengajar di sekolah.' },
+            { t: 'Polisi', i: '👮‍♂️', s: 'Polisi menjaga keamanan.' },
+            { t: 'Pemadam Kebakaran', i: '👨‍🚒', s: 'Pemadam kebakaran memadamkan api.' },
+            { t: 'Pilot', i: '👨‍✈️', s: 'Pilot menerbangkan pesawat.' },
+            { t: 'Astronot', i: '👨‍🚀', s: 'Astronot pergi ke luar angkasa.' },
+            { t: 'Koki', i: '👨‍🍳', s: 'Koki memasak makanan enak.' },
+            { t: 'Petani', i: '👨‍🌾', s: 'Petani menanam padi.' }
+        ];
+        let prfHtml = '';
+        profesiData.forEach((pr, idx) => {
+            prfHtml += `<div class="card" onclick="aksi('${pr.s}', 'prf${idx}', 'anim-lompat')">
+                            <div class="icon" id="prf${idx}">${pr.i}</div><div class="title">${pr.t}</div>
+                        </div>`;
+        });
+        document.getElementById('gridProfesi').innerHTML = prfHtml;
+
+        // BUAH & SAYUR
+        const buahData = [
+            { t: 'Stroberi', i: '🍓', s: 'Buah Stroberi manis.' },
+            { t: 'Pisang', i: '🍌', s: 'Buah Pisang kaya vitamin.' },
+            { t: 'Semangka', i: '🍉', s: 'Buah Semangka segar.' },
+            { t: 'Anggur', i: '🍇', s: 'Buah Anggur ungu.' },
+            { t: 'Wortel', i: '🥕', s: 'Sayur Wortel sehat untuk mata.' },
+            { t: 'Brokoli', i: '🥦', s: 'Sayur Brokoli hijau sehat.' },
+            { t: 'Tomat', i: '🍅', s: 'Tomat merah segar.' },
+            { t: 'Jagung', i: '🌽', s: 'Jagung manis lezat.' }
+        ];
+        let buhHtml = '';
+        buahData.forEach((bh, idx) => {
+            buhHtml += `<div class="card" onclick="aksi('${bh.s}', 'buh${idx}', 'anim-goyang')">
+                            <div class="icon" id="buh${idx}">${bh.i}</div><div class="title">${bh.t}</div>
+                        </div>`;
+        });
+        document.getElementById('gridBuah').innerHTML = buhHtml;
+
+        // SUARA
         let suaraPilihan = null;
         function siapkanSuara() {
             let voices = window.speechSynthesis.getVoices();
@@ -337,7 +521,7 @@
             window.speechSynthesis.speak(speech);
         }
 
-        // LOGIKA NAVIGASI (Sticky Top & Pindah Halaman)
+        // NAVIGASI
         function mulaiGame() {
             let unlock = new SpeechSynthesisUtterance('');
             window.speechSynthesis.speak(unlock);
@@ -347,20 +531,17 @@
         function bukaHalaman(pageId, suaraTeks) {
             if(suaraTeks) ucapkan(suaraTeks);
 
-            // Memunculkan Navbar Jika Bukan di Halaman Welcome
             if (pageId === 'welcome') {
                 document.getElementById('topNav').classList.remove('active');
             } else {
                 document.getElementById('topNav').classList.add('active');
             }
             
-            // Otomatis Mematikan / Menghidupkan Video YouTube
             if (document.getElementById('video').classList.contains('active') && pageId !== 'video') {
-                document.getElementById('yt-player').src = ''; // Matikan video agar suaranya hilang saat pindah menu
+                document.getElementById('yt-player').src = ''; 
             }
             if (pageId === 'video' && document.getElementById('yt-player').src === '') gantiVideo();
 
-            // Pindah Kontainer
             document.querySelectorAll('.container').forEach(el => el.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             window.scrollTo(0, 0);
@@ -369,26 +550,24 @@
         function aksi(teks, elemenId, kelasAnimasi) {
             ucapkan(teks);
             const ikon = document.getElementById(elemenId);
-            ikon.classList.remove(kelasAnimasi);
-            void ikon.offsetWidth; 
-            ikon.classList.add(kelasAnimasi);
-            setTimeout(() => { ikon.classList.remove(kelasAnimasi); }, 1000);
+            if(ikon) {
+                ikon.classList.remove(kelasAnimasi);
+                void ikon.offsetWidth; 
+                ikon.classList.add(kelasAnimasi);
+                setTimeout(() => { ikon.classList.remove(kelasAnimasi); }, 1000);
+            }
         }
 
-        // KOLEKSI 30+ VIDEO YOUTUBE ANAK (Dipilih khusus yang bisa diputar)
         const playlist = [
-            'M97Lq6lYngc', 'csjSuwj4fU0', '51mPjpdFjLQ', // Masha and the Bear
-            'C281NYqrlMg', 'fmzxLHW4GmM', 'XqZsoesa55w', 'yDImFv1Z5wE', 'og1lOorpX3Q', // Cocomelon & Baby Shark
-            '0ywn69h4OBw', 'Ozq39j6wLv8', 'jLh_s7Qv_tE', 'hYn9o8T7Z8g', 'zO8M-4K20Uo', // Lagu Anak Indonesia Part 1
-            '2qJ3r8g5zCg', 'F4tHL8reNCs', 'WRVsOCh907o', 'hq3yfQnllfQ', 'MR5XSOdjKMA', // Lagu Anak Populer
-            '9O0l0mPzL8Y', '7_8yv5R2-eI', 'yWirdnSDsV4', 'e_04ZrNroTo', 'VzB99r_zQYQ', // Bintang Kecil & Roda Bus
-            '6U-9Z_p8dQs', 'd_JzH2XQvU0', 'o_8r9U9r_7o', '_8H_1oE_nEo', '8_8J-R5kG6k', // Kakaktua & Lagu Tradisional
-            'T2T8R1v0u_w', 'Q2r2E8nKq5U' // Tambahan
+            'M97Lq6lYngc', 'csjSuwj4fU0', '51mPjpdFjLQ', 'C281NYqrlMg', 'fmzxLHW4GmM', 
+            'XqZsoesa55w', 'yDImFv1Z5wE', 'og1lOorpX3Q', '0ywn69h4OBw', 'Ozq39j6wLv8', 
+            'jLh_s7Qv_tE', 'hYn9o8T7Z8g', 'zO8M-4K20Uo', '2qJ3r8g5zCg', 'F4tHL8reNCs', 
+            'WRVsOCh907o', 'hq3yfQnllfQ', 'MR5XSOdjKMA', '9O0l0mPzL8Y', '7_8yv5R2-eI', 
+            'yWirdnSDsV4', 'e_04ZrNroTo', 'VzB99r_zQYQ', '6U-9Z_p8dQs', 'd_JzH2XQvU0'
         ];
         
         function gantiVideo() {
             let randomId = playlist[Math.floor(Math.random() * playlist.length)];
-            // Menambahkan parameter controls=1 agar tombol play youtube tidak tersembunyi
             document.getElementById('yt-player').src = `https://www.youtube.com/embed/${randomId}?autoplay=1&rel=0&controls=1`;
         }
     </script>

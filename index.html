@@ -82,8 +82,16 @@
         }
         .container.active { display: flex; }
         
-        #welcome { padding-top: 15vh; justify-content: flex-start; min-height: 100vh; padding-top: 85px; }
-        #welcome h1 { font-size: 35px; padding: 10px 30px; border-radius: 50px; margin-bottom: 10px; }
+        /* Halaman Welcome diposisikan tepat di tengah layar */
+        #welcome { 
+            display: none; 
+            min-height: 100vh; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+        }
+        #welcome.active { display: flex; }
+        #welcome h1 { font-size: 30px; padding: 10px 30px; border-radius: 50px; margin-bottom: 10px; }
         p.subtitle { font-size: 18px; color: #fff; margin-bottom: 25px; font-weight: bold; text-shadow: 1px 1px 2px rgba(93,59,118,0.3); text-align: center;}
 
         /* --- DESAIN KARTU GELEMBUNG --- */
@@ -154,7 +162,7 @@
         <div class="nav-icons" id="navIconsContainer"></div>
     </nav>
 
-    <!-- HALAMAN AWAL -->
+    <!-- HALAMAN AWAL (Pas di tengah layar) -->
     <div id="welcome" class="container active">
         <div style="font-size: 55px; animation: floatSlow 2s infinite alternate;">👑</div>
         <h1 style="background: rgba(255,255,255,0.25); padding: 8px 25px; border-radius: 40px; font-size: 26px; color:#fff;">ANAYA SEENA SAFIRA</h1>
@@ -343,9 +351,9 @@
         document.getElementById('gridHijaiyah').innerHTML = hijHtml;
 
         const mengajiData = [
-            { t: 'Taawudz', i: '🤲', s: 'A’udzu billahi minas syaitonir rojiim.' },
+            { t: 'Taawudz', i: '🤲', s: 'Audzu billahi minas syaitonir rojiim.' },
             { t: 'Basmalah', i: '📖', s: 'Bismillahir rahmanir rohiim.' },
-            { t: 'Hamdalah', i: '🌟', s: 'Alhamdulillahir robbil ‘alamiin.' },
+            { t: 'Hamdalah', i: '🌟', s: 'Alhamdulillahir robbil alamiin.' },
             { t: 'Subhanallah', i: '✨', s: 'Subhanallah, Maha Suci Allah.' },
             { t: 'MasyaAllah', i: '🌸', s: 'Masya Allah, atas izin Allah.' },
             { t: 'InsyaAllah', i: '🌙', s: 'Insya Allah, jika Allah menghendaki.' },
@@ -353,7 +361,7 @@
             { t: 'Laailahaillallah', i: '💫', s: 'Laa ilaaha illallah, tiada Tuhan selain Allah.' },
             { t: 'Astaghfirullah', i: '💧', s: 'Astaghfirullahal adhiim, aku memohon ampun kepada Allah.' },
             { t: 'Innalillahi', i: '🕊️', s: 'Innalillahi wainna ilaihi rojiun.' },
-            { t: 'Sholawat Nabi', i: '💚', s: 'Allahumma sholli ‘ala sayyidina muhammad.' }
+            { t: 'Sholawat Nabi', i: '💚', s: 'Allahumma sholli ala sayyidina muhammad.' }
         ];
         let mgjHtml = '';
         mengajiData.forEach((mg, idx) => {
@@ -367,11 +375,11 @@
             { t: 'Ayat Kursi', i: '👑', s: 'Allahu laa ilaaha illa huwal hayyul qoyyum.' },
             { t: 'Surat Al-Fatihah', i: '📖', s: 'Bismillahir rahmanir rohiim. Alhamdulillahir robbil alamin. Ar rahmanir rohiim. Maliki yawmiddiin.' },
             { t: 'Surat Al-Ikhlas', i: '⭐', s: 'Qul huwallahu ahad. Allahus somad. Lam yalid walam yulad. Walam yakun lahu kufuwan ahad.' },
-            { t: 'Surat Al-Falaq', i: '🌙', s: 'Qul a’udzu birrobil falaq. Min syarri ma kholaq. Wamin syarri ghoasiqin iza waqob.' },
-            { t: 'Surat An-Nas', i: '☀️', s: 'Qul a’udzu bi rabbin nas. Malikin nas. Ilahin nas.' },
-            { t: 'Surat Al-Kautsar', i: '⛲', s: 'Inna a’thainakal kautsar. Fasholli lirabbika wanhar. Inna syaani'aka huwal abtar.' },
+            { t: 'Surat Al-Falaq', i: '🌙', s: 'Qul audzu birrobil falaq. Min syarri ma kholaq. Wamin syarri ghoasiqin iza waqob.' },
+            { t: 'Surat An-Nas', i: '☀️', s: 'Qul audzu bi rabbin nas. Malikin nas. Ilahin nas.' },
+            { t: 'Surat Al-Kautsar', i: '⛲', s: 'Inna athainakal kautsar. Fasholli lirabbika wanhar. Inna syaaniaka huwal abtar.' },
             { t: 'Surat An-Nasr', i: '🚩', s: 'Idza jaa-a nashrullahi wal fath. Wa ra-aitan naasa yadkhuluna fii diinillahi afwaja.' },
-            { t: 'Surat Al-Lahab', i: '🔥', s: 'Tabbat yada abi lahabiw watabb. Maa aghna 'anhu maaluhuu wama kasab.' }
+            { t: 'Surat Al-Lahab', i: '🔥', s: 'Tabbat yada abi lahabiw watabb. Maa aghna anhu maaluhuu wama kasab.' }
         ];
         let srtHtml = '';
         suratData.forEach((sr, idx) => {
@@ -387,12 +395,12 @@
             { t: 'Doa Iftitah', i: '🤲', s: 'Allah u akbar kabiro wal hamdu lillahi katsiro.' },
             { t: 'Surat Al-Fatihah', i: '📖', s: 'Bismillahir rahmanir rahim. Alhamdulillahir robbil alamin.' },
             { t: 'Surat Al-Ikhlas', i: '⭐', s: 'Qul huwallahu ahad. Allahus somad. Lam yalid walam yulad. Walam yakun lahu kufuwan ahad.' },
-            { t: 'Surat Al-Falaq', i: '🌙', s: 'Qul a’udzu birrobil falaq. Min syarri ma kholaq.' },
-            { t: 'Surat An-Nas', i: '☀️', s: 'Qul a’udzu bi rabbin nas. Malikin nas.' },
+            { t: 'Surat Al-Falaq', i: '🌙', s: 'Qul audzu birrobil falaq. Min syarri ma kholaq.' },
+            { t: 'Surat An-Nas', i: '☀️', s: 'Qul audzu bi rabbin nas. Malikin nas.' },
             { t: 'Ruku', i: '🙇‍♂️', s: 'Ruku. Subhana robbiyal adzimi wabihamdih.' },
             { t: 'Iktidal', i: '🙋‍♂️', s: 'Iktidal. Samiallahu liman hamidah.' },
             { t: 'Sujud', i: '🙇', s: 'Sujud. Subhana robbiyal alaa wabihamdih.' },
-            { t: 'Duduk Antara Dua Sujud', i: '🧘‍♂️', s: 'Robbighfirlii warhamnii wajburnii warfa’nii.' },
+            { t: 'Duduk Antara Dua Sujud', i: '🧘‍♂️', s: 'Robbighfirlii warhamnii wajburnii warfanii.' },
             { t: 'Tahiyyat Awal', i: '🧎‍♂️', s: 'At-tahiyyatul mubarakatus shalawatuth thayyibatu lillah.' },
             { t: 'Tahiyyat Akhir', i: '🤲', s: 'Assalamu alaika ayyuhan nabiyyu warahmatuullahi wabarakatuh.' },
             { t: 'Salam', i: '👋', s: 'Assalamu alaikum warahmatullah.' }
@@ -407,15 +415,15 @@
 
         const doaData = [
             { t: 'Doa Makan', i: '🍽️', s: 'Doa sebelum makan. Allahumma barik lana fi ma razaqtna wa qina adzabannar.' },
-            { t: 'Doa Sesudah Makan', i: '🥛', s: 'Doa sesudah makan. Alhamdulillahilladzii ath’amanaa wasaqaanaa waja’alanaa minal muslimiin.' },
+            { t: 'Doa Sesudah Makan', i: '🥛', s: 'Doa sesudah makan. Alhamdulillahilladzii athamanaa wasaqaanaa wajaalanaa minal muslimiin.' },
             { t: 'Doa Tidur', i: '🛌', s: 'Doa sebelum tidur. Bismika allahumma ahya wa bismika amuut.' },
-            { t: 'Doa Bangun Tidur', i: '⏰', s: 'Doa bangun tidur. Alhamdulillahilladhi ahyana ba’da ma amatana wa ilaihin nusyur.' },
-            { t: 'Doa Masuk Kamar Mandi', i: '🚪', s: 'Doa masuk kamar mandi. Allahumma inni a’udzubika minal khubutsi wal khabaits.' },
+            { t: 'Doa Bangun Tidur', i: '⏰', s: 'Doa bangun tidur. Alhamdulillahilladhi ahyana bada ma amatana wa ilaihin nusyur.' },
+            { t: 'Doa Masuk Kamar Mandi', i: '🚪', s: 'Doa masuk kamar mandi. Allahumma inni audzubika minal khubutsi wal khabaits.' },
             { t: 'Doa Keluar Kamar Mandi', i: '🚿', s: 'Doa keluar kamar mandi. Ghufranaka.' },
             { t: 'Doa Kedua Orang Tua', i: '👨‍👩‍👦', s: 'Doa untuk orang tua. Robbighfirlii wa liwaalidayya warhamhuma kamaa rabbayaanii shagiiraa.' },
             { t: 'Doa Kebaikan Dunia Akhirat', i: '🌍', s: 'Doa kebaikan dunia akhirat. Robbana atina fid dunya hasanah wa fil akhirati hasanah wa qina adzabannar.' },
             { t: 'Doa Masuk Rumah', i: '🏡', s: 'Doa masuk rumah. Bismillahi walajna wa bismillahi kharajna.' },
-            { t: 'Doa Keluar Rumah', i: '🚶‍♀️', s: 'Doa keluar rumah. Bismillahi tawakkaltu ’alallah.' },
+            { t: 'Doa Keluar Rumah', i: '🚶‍♀️', s: 'Doa keluar rumah. Bismillahi tawakkaltu alallah.' },
             { t: 'Doa Naik Kendaraan', i: '🚗', s: 'Doa naik kendaraan. Subhanalladzii sakhkhara lanaa haadzaa wamaa kunnaa lahuu muqriniin.' },
             { t: 'Doa Masuk Masjid', i: '🕌', s: 'Doa masuk masjid. Allahummaftah lii abwaaba rahmatika.' },
             { t: 'Doa Keluar Masjid', i: '👟', s: 'Doa keluar masjid. Allahumma inni as-aluka min fadlik.' },
@@ -525,7 +533,7 @@
             { t: 'Kentang', i: '🥔', s: 'Kentang sumber karbohidrat.' },
             { t: 'Ubi', i: '🍠', s: 'Ubi manis mengeyangkan.' },
             { t: 'Bawang Merah', i: '🧅', s: 'Bawang merah bumbu dapur.' },
-            { t: 'Bawang Putih', i: '🄄', s: 'Bawang putih sehat.' },
+            { t: 'Bawang Putih', i: '🧄', s: 'Bawang putih sehat.' },
             { t: 'Timun', i: '🥒', s: 'Timun segar lalapan.' },
             { t: 'Terong', i: '🍆', s: 'Terong ungu.' },
             { t: 'Jamur', i: '🍄', s: 'Jamur lezat dimasak.' },
@@ -575,7 +583,6 @@
         window.speechSynthesis.onvoiceschanged = siapkanSuara;
 
         function ucapkan(text) {
-            // Mencegah error antrean suara
             if (!('speechSynthesis' in window)) return;
             window.speechSynthesis.cancel(); 
             let speech = new SpeechSynthesisUtterance(text);
@@ -588,16 +595,14 @@
         }
 
         function mulaiGame() {
-            // Pindah halaman secara langsung tanpa menunggu antrean audio agar tidak pernah stuck
             document.getElementById('welcome').classList.remove('active');
             document.getElementById('home').classList.add('active');
             document.getElementById('topNav').classList.add('active');
             window.scrollTo(0, 0);
-
-            // Suara dijalankan setelah halaman berpindah
+            
             setTimeout(() => {
                 ucapkan('Halo Anaya Seena Safira!');
-            }, 100);
+            }, 200);
         }
 
         function bukaHalaman(pageId, suaraTeks) {
@@ -645,3 +650,4 @@
     </script>
 </body>
 </html>
+

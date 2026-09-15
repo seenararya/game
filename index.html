@@ -22,11 +22,11 @@
         /* --- ANIMASI GELEMBUNG BACKGROUND --- */
         .bg-bubbles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
         .bubble { position: absolute; bottom: -20px; background: rgba(255,255,255,0.3); border-radius: 50%; animation: terbang 10s infinite ease-in; }
-        .bubble:nth-child(1) { width: 35px; height: 35px; left: 15%; animation-duration: 8s; }
-        .bubble:nth-child(2) { width: 50px; height: 50px; left: 35%; animation-duration: 12s; animation-delay: 2s; }
-        .bubble:nth-child(3) { width: 25px; height: 25px; left: 70%; animation-duration: 7s; animation-delay: 4s; }
-        .bubble:nth-child(4) { width: 70px; height: 70px; left: 55%; animation-duration: 15s; animation-delay: 0s; }
-        .bubble:nth-child(5) { width: 40px; height: 40px; left: 85%; animation-duration: 9s; animation-delay: 3s; }
+        .bubble:nth-child(1) { width: 40px; height: 40px; left: 10%; animation-duration: 8s; }
+        .bubble:nth-child(2) { width: 60px; height: 60px; left: 30%; animation-duration: 12s; animation-delay: 2s; }
+        .bubble:nth-child(3) { width: 30px; height: 30px; left: 70%; animation-duration: 7s; animation-delay: 4s; }
+        .bubble:nth-child(4) { width: 80px; height: 80px; left: 50%; animation-duration: 15s; animation-delay: 0s; }
+        .bubble:nth-child(5) { width: 50px; height: 50px; left: 90%; animation-duration: 9s; animation-delay: 3s; }
         @keyframes terbang { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-120vh) scale(1.5); opacity: 0; } }
 
         /* --- NAVBAR MELAYANG DI ATAS (STICKY TOP) --- */
@@ -35,109 +35,109 @@
             position: fixed;
             top: 10px; left: 50%;
             transform: translateX(-50%);
-            width: 96%; max-width: 1000px;
-            background: rgba(255, 255, 255, 0.8);
+            width: 95%; max-width: 1000px;
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(10px);
-            border-radius: 40px;
-            padding: 6px 12px;
+            border-radius: 50px;
+            padding: 8px 15px;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(93, 59, 118, 0.15);
+            box-shadow: 0 4px 15px rgba(93, 59, 118, 0.2);
             border: 2px solid rgba(255, 255, 255, 0.9);
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
         }
         .top-navbar.active { display: flex; }
 
         .btn-kembali {
             background: #ff7eb3; color: white;
-            border: none; border-radius: 25px;
-            padding: 6px 14px; font-size: 14px; font-weight: bold;
-            cursor: pointer; box-shadow: 0 3px 0 #ff4757; transition: 0.2s;
-            display: flex; align-items: center; gap: 4px;
+            border: none; border-radius: 30px;
+            padding: 8px 15px; font-size: 16px; font-weight: bold;
+            cursor: pointer; box-shadow: 0 4px 0 #ff4757; transition: 0.2s;
+            display: flex; align-items: center; gap: 5px;
             flex-shrink: 0;
         }
-        .btn-kembali:active { transform: translateY(2px); box-shadow: 0 1px 0 #ff4757; }
+        .btn-kembali:active { transform: translateY(3px); box-shadow: 0 1px 0 #ff4757; }
 
         .nav-icons { 
-            display: flex; gap: 6px; overflow-x: auto; 
-            padding: 2px 0; scrollbar-width: none; flex-grow: 1; justify-content: flex-end;
+            display: flex; gap: 8px; overflow-x: auto; 
+            padding: 4px 0; scrollbar-width: none; flex-grow: 1; justify-content: flex-end;
         }
         .nav-icons::-webkit-scrollbar { display: none; }
         
         .nav-ikon-btn {
             background: rgba(255, 255, 255, 0.9); border: 2px solid #b185db;
-            border-radius: 50%; width: 36px; height: 36px;
+            border-radius: 50%; width: 40px; height: 40px;
             display: flex; justify-content: center; align-items: center;
-            font-size: 16px; cursor: pointer; transition: 0.2s;
-            box-shadow: 0 2px 0 #b185db; flex-shrink: 0;
+            font-size: 20px; cursor: pointer; transition: 0.2s;
+            box-shadow: 0 3px 0 #b185db; flex-shrink: 0;
         }
-        .nav-ikon-btn:active { transform: translateY(2px); box-shadow: 0 0px 0 #b185db; }
+        .nav-ikon-btn:active { transform: translateY(3px); box-shadow: 0 0px 0 #b185db; }
 
         /* --- CONTAINER KONTEN --- */
         .container {
             display: none; width: 100%; max-width: 1000px; margin: 0 auto;
             flex-direction: column; align-items: center;
-            padding: 75px 15px 40px 15px;
+            padding: 90px 15px 40px 15px;
             animation: fadeIn 0.4s ease-out;
         }
         .container.active { display: flex; }
         
         #welcome { padding-top: 15vh; justify-content: flex-start; min-height: 100vh; }
-        #welcome h1 { font-size: 24px; padding: 12px 30px; border-radius: 40px; margin-bottom: 5px; }
-        p.subtitle { font-size: 15px; color: #fff; margin-bottom: 25px; font-weight: bold; text-shadow: 1px 1px 2px rgba(93,59,118,0.3); text-align: center;}
+        #welcome h1 { font-size: 35px; padding: 10px 30px; border-radius: 50px; margin-bottom: 10px; }
+        p.subtitle { font-size: 18px; color: #fff; margin-bottom: 25px; font-weight: bold; text-shadow: 1px 1px 2px rgba(93,59,118,0.3); text-align: center;}
 
         h1 { 
-            font-size: 22px; color: #fff; text-shadow: 2px 2px 4px rgba(93,59,118,0.4); 
-            margin-bottom: 12px; text-align: center;
-            background: rgba(255,255,255,0.25); padding: 6px 20px; border-radius: 40px; backdrop-filter: blur(5px);
+            font-size: 28px; color: #fff; text-shadow: 2px 2px 4px rgba(93,59,118,0.4); 
+            margin-bottom: 15px; text-align: center;
+            background: rgba(255,255,255,0.25); padding: 8px 25px; border-radius: 50px; backdrop-filter: blur(5px);
             border: 2px solid rgba(255,255,255,0.5);
             animation: floatSlow 3s ease-in-out infinite alternate;
         }
 
-        /* --- DESAIN KARTU GELEMBUNG --- */
-        .grid-menu, .grid-item { display: grid; gap: 10px; width: 100%; }
-        .grid-menu { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); max-width: 700px; }
-        .grid-item { grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); }
+        /* --- DESAIN KARTU GELEMBUNG (UKURAN PAS & IDEAL) --- */
+        .grid-menu, .grid-item { display: grid; gap: 15px; width: 100%; }
+        .grid-menu { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); max-width: 750px; }
+        .grid-item { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
         
         .card {
             background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(10px);
-            border-radius: 22px;
+            border-radius: 30px; /* Ukuran gelembung pas */
             cursor: pointer;
-            box-shadow: 0 5px 10px rgba(93, 59, 118, 0.1), inset 0 0 8px rgba(255,255,255,0.9);
-            border: 2px solid rgba(255, 255, 255, 0.9); border-bottom: 4px solid #b185db;
+            box-shadow: 0 8px 15px rgba(93, 59, 118, 0.15), inset 0 0 10px rgba(255,255,255,0.9);
+            border: 3px solid rgba(255, 255, 255, 0.9); border-bottom: 6px solid #b185db;
             transition: all 0.2s; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            padding: 10px 6px; text-align: center;
+            padding: 20px 10px; text-align: center;
             animation: floatCard 3s ease-in-out infinite alternate;
         }
         .card:nth-child(even) { animation-delay: 0.5s; border-bottom-color: #f7a8b8; }
         .card:nth-child(3n) { animation-delay: 1s; border-bottom-color: #8ec5fc; }
         .card:nth-child(5n) { animation-delay: 1.5s; border-bottom-color: #fce38a; }
-        .card:active { transform: scale(0.9) !important; box-shadow: 0 2px 4px rgba(93, 59, 118, 0.2); animation: none; }
+        .card:active { transform: scale(0.9) !important; box-shadow: 0 2px 5px rgba(93, 59, 118, 0.2); animation: none; }
 
-        .icon { font-size: 32px; margin-bottom: 4px; display: inline-block; filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2)); }
-        .title { font-size: 12px; font-weight: bold; color: #5d3b76; line-height: 1.1; }
-        .huruf-teks { font-size: 38px !important; font-weight: 900; color: #9c27b0; text-shadow: 2px 2px 0 #fff; margin:0;}
-        .arab-teks { font-size: 36px !important; font-weight: 900; color: #00796b; margin: 0; }
+        .icon { font-size: 45px; margin-bottom: 5px; display: inline-block; filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2)); }
+        .title { font-size: 15px; font-weight: bold; color: #5d3b76; line-height: 1.2; }
+        .huruf-teks { font-size: 50px !important; font-weight: 900; color: #9c27b0; text-shadow: 2px 2px 0 #fff; margin:0;}
+        .arab-teks { font-size: 45px !important; font-weight: 900; color: #00796b; margin: 0; }
 
         .btn-start { 
             background: linear-gradient(to right, #9d4edd, #c77dff); color: white; 
-            padding: 12px 35px; font-size: 20px; font-weight: bold;
+            padding: 15px 50px; font-size: 24px; font-weight: bold;
             border: 3px solid white; border-radius: 40px; cursor: pointer;
-            box-shadow: 0 5px 0 #7b2cbf; animation: pulse 1.5s infinite; transition: 0.2s;
+            box-shadow: 0 6px 0 #7b2cbf; animation: pulse 1.5s infinite; transition: 0.2s;
         }
         .btn-start:active { transform: translateY(4px); box-shadow: 0 2px 0 #7b2cbf; }
 
         .video-wrapper { 
             width: 100%; max-width: 750px; aspect-ratio: 16/9; 
-            border-radius: 20px; overflow: hidden; border: 5px solid white; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3); background: black; position: relative; margin-bottom: 12px;
+            border-radius: 25px; overflow: hidden; border: 6px solid white; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); background: black; position: relative; margin-bottom: 15px;
         }
         .video-wrapper iframe { width: 100%; height: 100%; border: none; position: absolute; top:0; left:0;}
 
         /* Animasi */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes floatSlow { 0% { transform: translateY(0); } 100% { transform: translateY(-6px); } }
-        @keyframes floatCard { 0% { transform: translateY(0px); } 100% { transform: translateY(-4px); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes floatSlow { 0% { transform: translateY(0); } 100% { transform: translateY(-8px); } }
+        @keyframes floatCard { 0% { transform: translateY(0px); } 100% { transform: translateY(-5px); } }
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
         
         .anim-kepala { animation: geleng 1s; } @keyframes geleng { 0%,100%{transform:rotate(0);} 25%{transform:rotate(-25deg);} 75%{transform:rotate(25deg);} }
@@ -164,7 +164,7 @@
 
     <!-- HALAMAN AWAL -->
     <div id="welcome" class="container active">
-        <div style="font-size: 45px; animation: floatSlow 2s infinite alternate;">👑</div>
+        <div style="font-size: 55px; animation: floatSlow 2s infinite alternate;">👑</div>
         <h1>ANAYA SEENA SAFIRA</h1>
         <p class="subtitle">Bermain & Belajar Bersama</p>
         <button class="btn-start" onclick="mulaiGame()">Mulai Main 🎈</button>
@@ -248,7 +248,7 @@
         <div class="video-wrapper">
             <iframe id="yt-player" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
-        <button class="btn-start" style="font-size:15px; padding:10px 22px; margin-top:5px; background:#ff9a9e; border-color:#ff9a9e;" onclick="gantiVideo()">Acak Video Lainnya 🔄</button>
+        <button class="btn-start" style="font-size:18px; padding:12px 30px; margin-top:10px; background:#ff9a9e; border-color:#ff9a9e;" onclick="gantiVideo()">Acak Video Lainnya 🔄</button>
     </div>
 
     <script>
@@ -280,7 +280,6 @@
         document.getElementById('navIconsContainer').innerHTML = navHtml;
         document.getElementById('menuGridContainer').innerHTML = menuHtml;
 
-        // GERAKAN (32 Item)
         const dataGerakan = [
             { t: 'Kepala', i: '👦', a: 'anim-kepala' }, { t: 'Pundak', i: '🤷‍♀️', a: 'anim-pundak' }, 
             { t: 'Lutut', i: '🦵', a: 'anim-lutut' }, { t: 'Kaki', i: '🦶', a: 'anim-kaki' }, 
@@ -307,7 +306,6 @@
         });
         document.getElementById('gridGerakan').innerHTML = gerHtml;
 
-        // HEWAN (32 Item)
         const dataHewan = [
             { t: 'Kucing', i: '🐱', s: 'Kucing. Meong meong!', a: 'anim-lompat' },
             { t: 'Anjing', i: '🐶', s: 'Anjing. Guk guk guk!', a: 'anim-goyang' },
@@ -350,7 +348,6 @@
         });
         document.getElementById('gridHewan').innerHTML = hwHtml;
 
-        // ABJAD & BENDA
         const hurufData = [
             { h: 'A', b: 'Apel', e: '🍎' }, { h: 'B', b: 'Bola', e: '⚽' }, { h: 'C', b: 'Cicak', e: '🦎' },
             { h: 'D', b: 'Domba', e: '🐑' }, { h: 'E', b: 'Es Krim', e: '🍦' }, { h: 'F', b: 'Foto', e: '📸' },
@@ -374,7 +371,6 @@
         document.getElementById('grid-abjad').innerHTML = abjadHtml;
         document.getElementById('grid-benda').innerHTML = bendaHtml;
 
-        // ANGKA 1-25
         const namaAngka = ["", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", 
                            "Sebelas", "Dua Belas", "Tiga Belas", "Empat Belas", "Lima Belas", "Enam Belas", "Tujuh Belas", "Delapan Belas", "Sembilan Belas", "Dua Puluh",
                            "Dua Puluh Satu", "Dua Puluh Dua", "Dua Puluh Tiga", "Dua Puluh Empat", "Dua Puluh Lima"];
@@ -386,7 +382,6 @@
         }
         document.getElementById('gridAngka').innerHTML = angkaHtml;
 
-        // HIJAIYAH
         const hijaiyahData = [
             { ar: 'ا', nm: 'Alif' }, { ar: 'ب', nm: 'Ba' }, { ar: 'ت', nm: 'Ta' }, { ar: 'ث', nm: 'Tsa' },
             { ar: 'ج', nm: 'Jim' }, { ar: 'ح', nm: 'Ha' }, { ar: 'خ', nm: 'Kha' }, { ar: 'د', nm: 'Dal' },
@@ -404,7 +399,6 @@
         });
         document.getElementById('gridHijaiyah').innerHTML = hijHtml;
 
-        // SHOLAT
         const sholatData = [
             { t: 'Berdiri Tegak', i: '🧍‍♂️', s: 'Berdiri tegak menghadap kiblat.' },
             { t: 'Takbiratul Ihram', i: '🙌', s: 'Takbiratul ihram. Allahu Akbar!' },
@@ -425,7 +419,6 @@
         });
         document.getElementById('gridSholat').innerHTML = shlHtml;
 
-        // DOA
         const doaData = [
             { t: 'Doa Makan', i: '🍽️', s: 'Doa sebelum makan. Allahumma barik lana fi ma razaqtna wa qina adzabannar.' },
             { t: 'Doa Tidur', i: '🛌', s: 'Doa sebelum tidur. Bismika allahumma ahya wa bismika amuut.' },
@@ -444,7 +437,6 @@
         });
         document.getElementById('gridDoa').innerHTML = doaHtml;
 
-        // BENTUK & WARNA
         const bentukData = [
             { t: 'Lingkaran Merah', i: '🔴', s: 'Lingkaran Warna Merah' },
             { t: 'Kotak Biru', i: '🟦', s: 'Kotak Warna Biru' },
@@ -464,7 +456,6 @@
         });
         document.getElementById('gridBentuk').innerHTML = bntHtml;
 
-        // PROFESI
         const profesiData = [
             { t: 'Dokter', i: '👩‍⚕️', s: 'Dokter menyembuhkan orang sakit.' },
             { t: 'Guru', i: '👩‍🏫', s: 'Guru mengajar di sekolah.' },
@@ -483,7 +474,6 @@
         });
         document.getElementById('gridProfesi').innerHTML = prfHtml;
 
-        // BUAH & SAYUR
         const buahData = [
             { t: 'Stroberi', i: '🍓', s: 'Buah Stroberi manis.' },
             { t: 'Pisang', i: '🍌', s: 'Buah Pisang kaya vitamin.' },
@@ -502,7 +492,6 @@
         });
         document.getElementById('gridBuah').innerHTML = buhHtml;
 
-        // SUARA
         let suaraPilihan = null;
         function siapkanSuara() {
             let voices = window.speechSynthesis.getVoices();
@@ -521,7 +510,6 @@
             window.speechSynthesis.speak(speech);
         }
 
-        // NAVIGASI
         function mulaiGame() {
             let unlock = new SpeechSynthesisUtterance('');
             window.speechSynthesis.speak(unlock);

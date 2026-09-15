@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seena Game - Bermain & Belajar</title>
+    <style>
+        /* Desain Estetik & Gradasi Background */
+        body {
+            font-family: 'Nunito', 'Quicksand', 'Comic Sans MS', sans-serif;
+            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+            background-attachment: fixed;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            color: #555;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 3em;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        p.subtitle {
+            font-size: 1.3em;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        /* Container untuk transisi halaman */
+        .container {
+            display: none;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Grid Kotak */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Desain Kartu Estetik (Glassmorphism Soft) */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px 20px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .card:active {
+            transform: scale(0.95);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Warna Soft per kategori */
+        .card.pink { border-bottom: 8px solid #ff9a9e; }
+        .card.blue { border-bottom: 8px solid #8ec5fc; }
+        .card.green { border-bottom: 8px solid #bcf2ce; }
+        .card.yellow { border-bottom: 8px solid #fce38a; }
+
+        .icon {
+            font-size: 80px;
+            margin-bottom: 15px;
+            display: inline-block; /* Penting untuk animasi */
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4a4a4a;
+        }
+
+        /* Tombol Umum */
+        .btn {
+            margin-top: 30px;
+            padding: 15px 40px;
+            font-size: 22px;
+            font-weight: bold;
+            background: #fff;
+            color: #ff758c;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-start {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            color: white;
+            font-size: 28px;
+            padding: 20px 60px;
+            border-radius: 50px;
+            animation: pulse 2s infinite;
+        }
+
+        /* ---------------- ANIMASI GERAKAN ---------------- */
+        
+        /* Animasi Tombol Mulai */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Animasi Kepala (Geleng/Angguk) */
+        .anim-kepala {
+            animation: geleng 1s ease-in-out;
+        }
+        @keyframes geleng {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-20deg) translateY(-10px); }
+            75% { transform: rotate(20deg) translateY(-10px); }
+        }
+
+        /* Animasi Pundak (Naik Turun) */
+        .anim-pundak {
+            animation: naik-turun 1s ease-in-out;
+        }
+        @keyframes naik-turun {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
+        }
+
+        /* Animasi Lutut (Menekuk/Mengeper) */
+        .anim-lutut {
+            animation: nekuk 1s ease-in-out;
+        }
+        @keyframes nekuk {
+            0%, 100% { transform: scale(1, 1) translateY(0); }
+            50% { transform: scale(1.1, 0.7) translateY(20px); }
+        }
+
+        /* Animasi Kaki (Menendang/Jalan) */
+        .anim-kaki {
+            animation: nendang 1s ease-in-out;
+        }
+        @keyframes nendang {
+            0%, 100% { transform: rotate(0deg) translateX(0); }
+            25% { transform: rotate(-30deg) translateX(-15px); }
+            75% { transform: rotate(30deg) translateX(15px); }
+        }
+
+        /* Animasi Huruf (Melompat) */
+        .anim-lompat {
+            animation: lompat 0.8s ease-in-out;
+        }
+        @keyframes lompat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px) scale(1.2); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HALAMAN PEMBUKA (PENTING UNTUK MEMBUKA IZIN SUARA) -->
+    <div id="welcome" class="container active">
+        <h1 style="margin-top: 15vh;">Seena Game ✨</h1>
+        <p class="subtitle">Bermain sambil belajar untuk Seena</p>
+        <button class="btn btn-start" onclick="mulaiGame()">Mulai Main 🚀</button>
+    </div>
+
+    <!-- HALAMAN MENU UTAMA -->
+    <div id="home" class="container">
+        <h1>Halo Seena! 🎈</h1>
+        <p class="subtitle">Pilih permainan yang Seena suka</p>
+        <div class="menu-grid">
+            <div class="card pink" onclick="bukaHalaman('gerakan', 'Ayo bermain gerakan tubuh!')">
+                <div class="icon anim-lompat" id="ikon-menu-gerak">🤸‍♀️</div>
+                <div class="title">Gerakan</div>
+            </div>
+            <div class="card blue" onclick="bukaHalaman('huruf', 'Ayo belajar huruf dan benda!')">
+                <div class="icon anim-lompat" id="ikon-menu-huruf">🅰️</div>
+                <div class="title">Belajar Huruf</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HALAMAN GERAKAN -->
+    <div id="gerakan" class="container">
+        <h1>Ayo Bergerak! 🎵</h1>
+        <p class="subtitle">Sentuh gambarnya dan ikuti gerakannya ya!</p>
+        <div class="menu-grid">
+            <div class="card pink" onclick="mainkanAksi('Pegang Kepala!', 'ikon-kepala', 'anim-kepala')">
+                <div class="icon" id="ikon-kepala">👧</div>
+                <div class="title">Kepala</div>
+            </div>
+            <div class="card yellow" onclick="mainkanAksi('Pegang Pundak!', 'ikon-pundak', 'anim-pundak')">
+                <div class="icon" id="ikon-pundak">🤷‍♀️</div>
+                <div class="title">Pundak</div>
+            </div>
+            <div class="card green" onclick="mainkanAksi('Pegang Lutut!', 'ikon-lutut', 'anim-lutut')">
+                <div class="icon" id="ikon-lutut">🦵</div>
+                <div class="title">Lutut</div>
+            </div>
+            <div class="card blue" onclick="mainkanAksi('Pegang Kaki!', 'ikon-kaki', 'anim-kaki')">
+                <div class="icon" id="ikon-kaki">🦶</div>
+                <div class="title">Kaki</div>
+            </div>
+        </div>
+        <button class="btn" onclick="bukaHalaman('home', 'Kembali ke menu')">⬅️ Kembali</button>
+    </div>
+
+    <!-- HALAMAN HURUF & BENDA -->
+    <div id="huruf" class="container">
+        <h1>Belajar Huruf 📚</h1>
+        <p class="subtitle">Sentuh gambar untuk mendengar namanya</p>
+        <div class="menu-grid">
+            <div class="card green" onclick="mainkanAksi('A untuk Apel', 'ikon-a', 'anim-lompat')">
+                <div class="icon" id="ikon-a">🍎</div>
+                <div class="title">A - Apel</div>
+            </div>
+            <div class="card blue" onclick="mainkanAksi('B untuk Bola', 'ikon-b', 'anim-lompat')">
+                <div class="icon" id="ikon-b">⚽</div>
+                <div class="title">B - Bola</div>
+            </div>
+            <div class="card yellow" onclick="mainkanAksi('C untuk Cicak', 'ikon-c', 'anim-lompat')">
+                <div class="icon" id="ikon-c">🦎</div>
+                <div class="title">C - Cicak</div>
+            </div>
+            <div class="card pink" onclick="mainkanAksi('D untuk Domba', 'ikon-d', 'anim-lompat')">
+                <div class="icon" id="ikon-d">🐑</div>
+                <div class="title">D - Domba</div>
+            </div>
+        </div>
+        <button class="btn" onclick="bukaHalaman('home', 'Kembali ke menu')">⬅️ Kembali</button>
+    </div>
+
+    <script>
+        // Inisialisasi suara kosong saat pertama klik agar browser memberi izin
+        function mulaiGame() {
+            let unlock = new SpeechSynthesisUtterance('');
+            window.speechSynthesis.speak(unlock);
+            
+            bukaHalaman('home', 'Selamat datang di Seena Game');
+        }
+
+        // Fungsi berpindah halaman
+        function bukaHalaman(pageId, suaraTeks) {
+            // Mainkan suara
+            if(suaraTeks) ucapkan(suaraTeks);
+
+            // Sembunyikan semua halaman
+            document.querySelectorAll('.container').forEach(el => {
+                el.classList.remove('active');
+            });
+            // Tampilkan halaman yang dituju
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Fungsi Animasi + Suara
+        function mainkanAksi(teks, elemenId, kelasAnimasi) {
+            // 1. Keluarkan Suara
+            ucapkan(teks);
+
+            // 2. Jalankan Animasi
+            const ikon = document.getElementById(elemenId);
+            
+            // Hapus animasi jika sedang berjalan (reset)
+            ikon.classList.remove(kelasAnimasi);
+            
+            // Beri sedikit jeda waktu lalu tambahkan kelas animasi agar mengulang
+            setTimeout(() => {
+                ikon.classList.add(kelasAnimasi);
+            }, 10);
+
+            // Hapus kelas animasi setelah selesai (1 detik) agar bisa diklik lagi nanti
+            setTimeout(() => {
+                ikon.classList.remove(kelasAnimasi);
+            }, 1000);
+        }
+
+        // Fungsi Text-to-Speech (Suara dari Google/Sistem)
+        function ucapkan(text) {
+            window.speechSynthesis.cancel(); // Hentikan suara yang numpuk
+            
+            let speech = new SpeechSynthesisUtterance();
+            speech.text = text;
+            speech.lang = 'id-ID'; // Bahasa Indonesia
+            speech.rate = 0.8; // Sedikit lambat agar anak mudah meniru
+            speech.pitch = 1.3; // Lebih tinggi (ceria seperti anak-anak/perempuan)
+            speech.volume = 1;
+            
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+</body>
+</html>
